@@ -12,10 +12,16 @@
   },
   "scripts": {
     "start": "nodemon",
-    "test": "mocha"
+    "test": "mocha --watch"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "node-fetch": "^2.3.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*"
+    ]
   }
 }
