@@ -1,8 +1,37 @@
 let mongoose = require('mongoose');
+let user = require('../models/user');
 let config = require('../config.json');
 let jwt = require('jsonwebtoken');
 
 module.exports = function(router, mongoose){
+
+    router.post('/signup/', (req, res)=>{
+        let newUser = new user(req.body);
+        user.findOne({$or:[{username: req.body.username}, {email: req.body.email}]}, function(err, user){
+            if(err){
+                res.status(500).json({
+                    errorCode: err
+                });
+            }
+            else if(user){
+                res.status(400).json({
+                    errorCode: 'Username or email ID is not unique'
+                });
+            }
+            else{
+                newUser.save(newUser, (err, newUser)=>{
+                    if(err){
+                        res.status(500).json({
+                            errorCode: err
+                        });
+                    }
+                    else{
+                        res.status(200).json({ username: newUser });
+                    }
+                });
+            }
+        });
+    });
     
     router.post('/login/', (req, res)=>{
         let username = req.body.username;
@@ -16,7 +45,7 @@ module.exports = function(router, mongoose){
         else{
             res.status(401).json({ errorCode: 'Unauthorized' });
         }
-    })
+    });
 
     router.get('/protected', (req, res)=>{
         let token = req.headers['authorization'] || req.headers['x-access-token'];
