@@ -1,4 +1,4 @@
-.login-signup-form{
+.bio, .update-form{
     max-width: 350px;
     margin-top: 25vh;
     border: 1px solid #ced4da;
@@ -6,6 +6,6 @@
     min-height: 300px;
 }
 
-.login-icon{
+.avatar{
     width: 5em;
 }

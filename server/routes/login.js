@@ -1,13 +1,13 @@
 let mongoose = require('mongoose');
-let user = require('../models/user');
+let User = require('../models/user');
 let config = require('../config.json');
 let jwt = require('jsonwebtoken');
 
 module.exports = function(router, mongoose){
 
-    router.post('/signup/', (req, res)=>{
+    router.post('/signup/', (req, res) => {
         let newUser = new user(req.body);
-        user.findOne({$or:[{username: req.body.username}, {email: req.body.email}]}, function(err, user){
+        user.findOne({$or:[{username: req.body.username}, {_id: req.body.email}]}, function(err, user){
             if(err){
                 res.status(500).json({
                     errorCode: err
@@ -19,7 +19,7 @@ module.exports = function(router, mongoose){
                 });
             }
             else{
-                newUser.save(newUser, (err, newUser)=>{
+                newUser.save(newUser, (err, newUser) => {
                     if(err){
                         res.status(500).json({
                             errorCode: err
@@ -33,7 +33,7 @@ module.exports = function(router, mongoose){
         });
     });
     
-    router.post('/login/', (req, res)=>{
+    router.post('/login/', (req, res) => {
         let username = req.body.username;
         let password = req.body.password;
         console.log(username);
@@ -47,7 +47,7 @@ module.exports = function(router, mongoose){
         }
     });
 
-    router.get('/protected', (req, res)=>{
+    router.get('/protected', (req, res) => {
         let token = req.headers['authorization'] || req.headers['x-access-token'];
         token = token.slice(7, token.length);
         try{

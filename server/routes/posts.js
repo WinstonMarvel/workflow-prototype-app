@@ -1,9 +1,9 @@
-let post = require('../models/post');
+let Post = require('../models/post');
 
 module.exports = function(router, mongoose){
     
     router.get('/posts/', (req, res)=>{
-        post.find(function(err, list){
+        Post.find(function(err, list){
             if(err){
                 console.log(err);
                 res.status(500).json({
@@ -15,7 +15,7 @@ module.exports = function(router, mongoose){
     });
     
     router.get('/post/:id', (req, res)=>{
-        post.find({postId: req.params.id}, function(err, post){
+        Post.find({postId: req.params.id}, function(err, post){
             if(err){
                 console.log(err);
                 res.status(500).json({
@@ -51,7 +51,7 @@ module.exports = function(router, mongoose){
     });
 
     router.put('/post/:id', (req, res)=>{
-        post.findOneAndUpdate({postId: req.params.id}, req.body.post, function(err, post){
+        Post.findOneAndUpdate({postId: req.params.id}, req.body.post, function(err, post){
             if(err){
                 console.log(err);
                 res.status(500).json({
@@ -68,7 +68,7 @@ module.exports = function(router, mongoose){
     });
     
     router.delete('/post/:id', (req, res)=>{
-        post.findOneAndDelete({postId: req.params.id}, function(err, post){
+        Post.findOneAndDelete({postId: req.params.id}, function(err, post){
             if(err){
                 console.log(err);
                 res.status(500).json({
