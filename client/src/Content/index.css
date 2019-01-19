@@ -1,0 +1,120 @@
+
+#main-col {
+  flex: 0 0 1110px;
+  margin: 0 auto;
+}
+
+#main-col ul li a {
+  display: block;
+  width: 100%;
+}
+
+#main-col ul {
+  list-style: none;
+}
+
+
+
+
+/****** CHECKBOX CSS ********/
+
+.labelq{
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  padding: 20px 0;
+}
+.labelq__checkbox {
+  display: none;
+}
+.labelq__check {
+  font-size: 1.5em;
+  position: relative;
+  top: -12px;
+  float: right;
+  margin-left: -100%;
+  display: inline-block;
+  border-radius: 50%;
+  border: 5px solid rgba(171, 37, 37, 0.3);
+  background: white;
+  vertical-align: middle;
+  margin-right: 20px;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border .3s ease;
+}
+.labelq__check i.icon {
+  opacity: 0.2;
+  font-size: calc(2rem);
+  color: transparent;
+  transition: opacity .3s .1s ease;
+  -webkit-text-stroke: 3px rgb(171, 37, 37);
+}
+.labelq__check:hover {
+  border: 5px solid rgba(0, 0, 0, 0.2);
+}
+.labelq__checkbox:checked + .labelq__text .labelq__check {
+  animation: check 0.5s cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+}
+.labelq__checkbox:checked + .labelq__text .labelq__check .icon {
+  opacity: 1;
+  transform: scale(0);
+  color: white;
+  -webkit-text-stroke: 0;
+  animation: icon 0.3s cubic-bezier(1, 0.008, 0.565, 1.65) 0.1s 1 forwards;
+}
+.labelq__questionText{
+  display: block;
+  float: left;
+  margin-right: 100px;
+}
+
+@keyframes icon {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes check {
+  0% {
+    width: 1.5em;
+    height: 1.5em;
+    border-width: 5px;
+  }
+  10% {
+    width: 1.5em;
+    height: 1.5em;
+    opacity: 0.1;
+    background: rgba(0, 0, 0, 0.2);
+    border-width: 15px;
+  }
+  12% {
+    width: 1.5em;
+    height: 1.5em;
+    opacity: 0.4;
+    background: rgba(0, 0, 0, 0.1);
+    border-width: 0;
+  }
+  50% {
+    width: 2em;
+    height: 2em;
+    background: #00d478;
+    border: 0;
+    opacity: 0.6;
+  }
+  100% {
+    width: 2em;
+    height: 2em;
+    background: #00d478;
+    border: 0;
+    opacity: 1;
+  }
+}

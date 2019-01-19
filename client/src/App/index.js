@@ -4,7 +4,8 @@ import Login from '../Login';
 import Dashboard from '../Dashboard';
 import Settings from '../Settings';
 import Signup from '../Login/Signup';
-import './App.css';
+import Content from '../Content';
+import './App.css'; 
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
       <BrowserRouter>
           <Switch>
             <Route exact path='/' component={Dashboard} />
+            <Route exact path='/tasks' component={Content} />
             <Route path='/login' component={Login} />
             <Route path='/settings' component={Settings} />
             <Route path='/signup' component={Signup} />

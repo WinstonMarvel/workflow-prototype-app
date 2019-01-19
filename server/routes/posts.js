@@ -32,26 +32,26 @@ module.exports = function(router, mongoose){
     });
     
     router.post('/posts/', (req, res)=>{ 
-        req.body.post.createdDate = new Date();
-        let newPost = new post(req.body.post);
+        req.body.createdDate = new Date();
+        let newPost = new Post(req.body);
         newPost.save(function(err, newPost){
             if(err){
                 console.log(err);
                 res.status(500).json({
                     errorCode: err
-                })
+                }) 
             }
             else{
                 res.status(200).json({
                     status: 'success',
-                    id: newPost._id
+                    id: newPost.postId
                 });    
             }    
         }); 
     });
 
     router.put('/post/:id', (req, res)=>{
-        Post.findOneAndUpdate({postId: req.params.id}, req.body.post, function(err, post){
+        Post.findOneAndUpdate({postId: req.params.id}, req.body, function(err, post){
             if(err){
                 console.log(err);
                 res.status(500).json({
