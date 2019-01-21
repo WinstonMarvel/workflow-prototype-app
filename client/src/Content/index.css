@@ -31,14 +31,13 @@
   font-size: 1.5em;
   position: relative;
   top: -12px;
-  float: right;
-  margin-left: -100%;
+  float: left;
+  margin-right: -100%;
   display: inline-block;
   border-radius: 50%;
   border: 5px solid rgba(171, 37, 37, 0.3);
   background: white;
   vertical-align: middle;
-  margin-right: 20px;
   width: 2em;
   height: 2em;
   cursor: pointer;
@@ -70,7 +69,7 @@
 .labelq__questionText{
   display: block;
   float: left;
-  margin-right: 100px;
+  margin-left: 100px;
 }
 
 @keyframes icon {

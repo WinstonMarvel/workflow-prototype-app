@@ -10,13 +10,17 @@ header {
 
 a.logo {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
-  flex-basis: 15%;
+  flex-basis: 35%;
   align-items: center;
   display: flex;
   justify-content: center;
-  font-family: cursive;
+  white-space: nowrap;
+}
+
+.logo img{
+  max-width: 200px;
 }
 
 .org-select {
