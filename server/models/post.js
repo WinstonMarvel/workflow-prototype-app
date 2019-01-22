@@ -6,58 +6,180 @@ let postSchema = new mongoose.Schema({
         index: {
             unique: true,
             dropDups: true
-        } 
+        }
     },
-    createdDate: Date,
-    userId: Number,
+    postInfo: {
+        vendorName: {
+            type: String,
+            required: true
+        },
+        clientName: {
+            type: String,
+            required: true
+        },
+        createdDate: {
+            type: Date,
+            required: true
+        },
+        postTitle: {
+            type: String,
+            required: true
+        },
+        userId: {
+            type: Number,
+            required: true
+        }
+    },
     plagiarism: {
-        copyscape: Boolean,
-        uniqueness: Boolean, 
-        total: Number 
-    }, 
+        copyscape: {
+            type: Boolean,
+            required: true
+        },
+        uniqueness: {
+            type: String,
+            required: true
+        },
+        total: {
+            type: Number,
+            required: true
+        }
+    },
     spellcheck: {
-        basic: Boolean, 
-        vendorInfo: Boolean,
-        wordUsage: Boolean,
-        grammar: Boolean,
-        total: Number
+        basic: {
+            type: Boolean,
+            required: true
+        },
+        vendorInfo: {
+            type: Boolean,
+            required: true
+        },
+        wordUsage: {
+            type: Boolean,
+            required: true
+        },
+        grammar: {
+            type: Boolean,
+            required: true
+        },
+        total: {
+            type: Number,
+            required: true
+        }
     },
     writingProficiency: {
-        pov: Boolean,
-        grammar: Boolean,
-        readability: Boolean,
-        total: Number
+        pov: {
+            type: Boolean,
+            required: true
+        },
+        grammar: {
+            type: Boolean,
+            required: true
+        },
+        readability: {
+            type: Boolean,
+            required: true
+        },
+        total: {
+            type: Number,
+            required: true
+        }
     },
     topic: {
-        appropriateness: Number,
-        date: Boolean,
-        total: Number
+        appropriateness: {
+            type: Number,
+            required: true
+        },
+        date: {
+            type: Boolean,
+            required: true
+        },
+        total: {
+            type: Number,
+            required: true
+        }
     },
-    tone: Boolean,
+    tone: {
+        type: Boolean,
+        required: true
+    },
     focus: {
-        topic: Number,
-        headline: Number,
-        adverseness: Boolean,
-        clientGoals: Boolean,
-        headers: Number,
-        total: Number
+        topic: {
+            type: Number,
+            required: true
+        },
+        headline: {
+            type: Number,
+            required: true
+        },
+        adverseness: {
+            type: Boolean,
+            required: true
+        },
+        clientGoals: {
+            type: Boolean,
+            required: true
+        },
+        headers: {
+            type: Number,
+            required: true
+        },
+        total: {
+            type: Number,
+            required: true
+        }
     },
-    source: Boolean,
+    source: {
+        type: Boolean,
+        required: true
+    },
     performance: {
-        linkText: Number,
-        linkMatchesHeaders: Number,
-        total: Number
+        linkText: {
+            type: Number,
+            required: true
+        },
+        linkMatchesHeaders: {
+            type: Number,
+            required: true
+        },
+        total: {
+            type: Number,
+            required: true
+        }
     },
-    compliance:{
-        words: Boolean,
-        isEthical: Boolean,
-        noMisleadingImpressions: Boolean,
-        noFactualInaccuracies: Boolean,
-        total: Number
+    compliance: {
+        words: {
+            type: Boolean,
+            required: true
+        },
+        isEthical: {
+            type: Boolean,
+            required: true
+        },
+        noMisleadingImpressions: {
+            type: Boolean,
+            required: true
+        },
+        noFactualInaccuracies: {
+            type: Boolean,
+            required: true
+        },
+        total: {
+            type: Number,
+            required: true
+        }
     },
-    total: Boolean,
-    score: Number,
-    status: Boolean
+    total: {
+        type: Number,
+        required: true
+    },
+    score: {
+        type: Number,
+        required: true
+    },
+    status: {
+        type: Boolean,
+        required: true
+    }
 });
 
 module.exports = new mongoose.model('post', postSchema);
