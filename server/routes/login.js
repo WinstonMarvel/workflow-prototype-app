@@ -2,12 +2,18 @@ let mongoose = require('mongoose');
 let User = require('../models/user');
 let config = require('../config.json');
 let jwt = require('jsonwebtoken');
+let bcrypt = require('bcrypt-nodejs');
+let isLoggedIn = require('./middleware').isLoggedIn;
 
 module.exports = function(router, mongoose){
-
+    
     router.post('/signup/', (req, res) => {
-        let newUser = new user(req.body);
-        user.findOne({$or:[{username: req.body.username}, {_id: req.body.email}]}, function(err, user){
+        let newUser = new User({
+            name: req.body.name,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password)
+        });
+        User.findOne({email: req.body.email}, function(err, user){
             if(err){
                 res.status(500).json({
                     errorCode: err
@@ -34,31 +40,27 @@ module.exports = function(router, mongoose){
     });
     
     router.post('/login/', (req, res) => {
-        let username = req.body.username;
         let password = req.body.password;
-        console.log(username);
-        console.log(req.params);
-        if(username == 'winston' &&  password == 'test'){
-            let token = jwt.sign({ user: username }, config.jwt.secret);
-            res.status(200).json({ token: token });
-        }
-        else{
-            res.status(401).json({ errorCode: 'Unauthorized' });
-        }
+        User.findOne({email: req.body.email}, function(err, user){
+            bcrypt.compare(password, user.password, function(err, match) {
+                if(match){
+                    console.log("Auth success");
+                    let token = jwt.sign({ user: req.body.email }, config.jwt.secret);
+                    res.status(200).json({ token: token });
+                }
+                else{
+                    console.log("fail");
+                    res.status(401).json({
+                        errorCode: 'E-mail or password incorrect'
+                    });
+                }
+            });
+        });
     });
 
-    router.get('/protected', (req, res) => {
-        let token = req.headers['authorization'] || req.headers['x-access-token'];
-        token = token.slice(7, token.length);
-        try{
-            var decoded = jwt.verify(token, config.jwt.secret);
-            console.log(decoded);
-            res.status(200).json(decoded);
-        }
-        catch(err){
-            res.status(401).json({
-                errorCode: err
-            });
-        }
+    router.get('/protected', isLoggedIn, (req, res) => {
+        res.status(200).json({
+            "success": "sucess"
+        });
     });
 };
