@@ -50,6 +50,7 @@ let postSchema = new mongoose.Schema({
     },
     compliance:{
         words: Boolean,
+        isEthical: Boolean,
         noMisleadingImpressions: Boolean,
         noFactualInaccuracies: Boolean,
         total: Number

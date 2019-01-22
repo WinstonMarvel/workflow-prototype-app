@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './StatusBar.css';
 
 const StatusBar = (props) => (
-    <div class="statusbar mb-5 mx-auto d-flex justify-content-between">
+    <div className="statusbar mb-5 mx-auto d-flex justify-content-between">
         <div className="score-points p-4">
             25/31
         </div>
