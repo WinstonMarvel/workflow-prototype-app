@@ -31,7 +31,7 @@ class Login extends Component {
                         <input type="password" className="form-control" placeholder="Password" name="password" id="password" value={ this.state.password } onChange={this.handleChange}/>
                     </div>
                     <div className="form-group">
-                        <button type="button" className="btn btn-primary px-5 mt-3" onClick={ ()=>{ login(this.state.username, this.state.password) } }> Login </button>
+                        <button type="button" className="btn btn-primary px-5 mt-3" onClick={ (e)=>{ e.preventDefault(); login(this.state.username, this.state.password) } }> Login </button>
                     </div>
                 </form>
             </div>

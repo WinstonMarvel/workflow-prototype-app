@@ -27,24 +27,24 @@ class Store extends EventEmitter {
                 total: 3
             },
             topic: {
-                appropriateness: 1,
+                appropriateness: 2,
                 date: true,
                 total: 1
             },
             tone: true,
             focus: {
-                topic: 1,
-                headline: 1,
+                topic: 2,
+                headline: 2,
                 adverseness: true,
                 clientGoals: true,
-                headers: 1,
-                total: 1
+                headers: 2,
+                total: 5
             },
-            source: true,
+            source: 2,
             performance: {
-                linkText: 1,
-                linkMatchesHeaders: 1,
-                total: 1
+                linkText: 2,
+                linkMatchesHeaders: 2,
+                total: 5
             },
             compliance:{
                 words: true,
@@ -53,7 +53,7 @@ class Store extends EventEmitter {
                 noFactualInaccuracies: true,
                 total: 1
             },
-            total: 45,
+            total: 31,
             score: 91,
             status: true
         }
@@ -99,7 +99,7 @@ class Store extends EventEmitter {
         
         post.compliance.total = post.compliance.words + post.compliance.isEthical + post.compliance.noMisleadingImpressions + post.compliance.noFactualInaccuracies;
         
-        post.total = post.plagiarism.total + post.spellcheck.total + post.writingProficiency.total + post.topic.total + post.focus.total + post.performance.total + post.compliance.total;
+        post.total = post.plagiarism.total + post.spellcheck.total + post.writingProficiency.total + post.topic.total + post.focus.total + post.performance.total + post.compliance.total + post.tone + post.source;
         
         post.score = post.total/31 * 100;
         post.status = "Achieved;"

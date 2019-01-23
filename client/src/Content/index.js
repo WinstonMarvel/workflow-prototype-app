@@ -19,6 +19,7 @@ class Content extends Component {
   }
 
   componentWillMount(){
+    PostDataStore.reCalculate();
     PostDataStore.on("change", this.getPost);
   }
 
@@ -37,7 +38,7 @@ class Content extends Component {
         <div className="container-fluid mw-1500">
           <div className="row d-flex justify-content-between">
             <article id="main-col" className="mt-5 pt-5">
-              <StatusBar totalPercent={this.state.tone}></StatusBar>
+              <StatusBar total={this.state.total} totalPercent={this.state.score} status={this.state.status}></StatusBar>
               <form>
                 <h2>Plagiarism/Duplicate Content</h2>
                 <CategorizedQuestion category="plagiarism" id="copyscape">Is the content free of plagiarism/duplicate content based on a Copyscape search?</CategorizedQuestion>
