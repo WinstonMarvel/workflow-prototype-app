@@ -5,35 +5,16 @@ import PostDataStore from '../_stores/PostDataStore';
 class StandaloneQuestion extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            isChecked: PostDataStore.getStandaloneQuestionStatus(this.props.id)
-        }
-        this.handleChange = this.handleChange.bind(this);
-        this.getStatus = this.getStatus.bind(this);
-    }
-
-    componentWillMount(){
-        PostDataStore.on('change', this.getStatus);
-    }
-
-    componentWillUnMount(){
-        PostDataStore.removeListener('change', this.this.getStatus);
-    }
-
-    getStatus(){
-        this.setState({
-            isChecked: PostDataStore.getStandaloneQuestionStatus(this.props.id)
-        });
-    }
-
-    handleChange(){
-        updatePostData_standalone(this.props.id, !this.state.isChecked);
     }
 
     render(){
         return (
             <label className="labelq clearfix"> 
-                <input checked={this.state.isChecked} onChange={this.handleChange} className="labelq__checkbox" type="checkbox" />
+                <input checked={this.props.val} onChange={ 
+                    () => { 
+                        this.props.handler(this.props.id, !this.props.val) 
+                    } 
+                } className="labelq__checkbox" type="checkbox" />
                 <span className="labelq__text">
                 
                     <span className="labelq__check">

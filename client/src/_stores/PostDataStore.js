@@ -78,7 +78,7 @@ class Store extends EventEmitter {
         }
     }
     
-    getPost() {
+    getPostData() {
         return this.post;
     }
 
@@ -108,19 +108,8 @@ class Store extends EventEmitter {
 
     handleActions(action) {
         switch(action.type) {
-            case "UPDATE_POST_STANDALONE": {
-                this.post[action.payload.id] = action.payload.value;
-                this.emit("change");
-                break;
-            }
-
-            case "UPDATE_POST_CATEGORIZED": {
-                this.post[action.payload.category][action.payload.id] = action.payload.value;
-                this.emit("change");
-                break;
-            }
-
-            case "UPDATE_POST_MULTI": {
+            case "UPDATE_POST": {
+                console.log(action);
                 if(action.payload.category){
                     this.post[action.payload.category][action.payload.id] = action.payload.value;
                 }
