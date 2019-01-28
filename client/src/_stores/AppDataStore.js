@@ -54,6 +54,10 @@ class Store extends EventEmitter{
                 break;
             }
 
+            case "LOCALSTORAGE_LOGIN": {
+
+            }
+
             case "APP_ERROR": {
                 this.appState.error = action.payload.error;
                 console.log("APP_ERROR: ", this.appState);

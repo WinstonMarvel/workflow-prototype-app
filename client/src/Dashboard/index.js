@@ -17,7 +17,7 @@ class Dashboard extends Component {
                   <h5 class="card-title">EBP Form</h5>
                   {/* <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
                   <p class="card-text">Choose this to rate a new EBP blog</p>
-                  <Link to="/tasks">Create New</Link>
+                  <Link to="/ebp">Create New</Link>
                 </div>
               </div>
               <div class="card mx-5">

@@ -1,8 +1,15 @@
 import React from 'react';
 import {Component} from 'react';
 import './index.css';
+import PostDataStore from '../_stores/PostDataStore';
 
 class Sidebar extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = PostDataStore.getPostData();
+  }
+
   render() {
     return (
 	    <aside>
@@ -13,9 +20,11 @@ class Sidebar extends Component {
             <div className="d-flex justify-content-between">
               <div className="pl-2 pr-2">
                 <ul className="project-dates font-sm">
-                  <li>Vendor Name: <span>Kennedy Kennedy &amp; Ives	</span></li>
-                  <li>Date of Post: <span>10-5-2019</span></li>
-                  <li>Client Name: <span>Test</span></li>
+                  <li>Vendor Name: <span>{ this.state.vendorName }</span></li>
+                  <li>Date of Post: <span>{ this.state.createdDate.toString() }</span></li>
+                  <li>Client Name: <span>{ this.state.clientName }</span></li>
+                  <li>Request ID: <span>{ this.state.requestId }</span></li>
+                  <li>Post Title: <span>{ this.state.postTitle }</span></li>
                 </ul>
               </div>
             </div>

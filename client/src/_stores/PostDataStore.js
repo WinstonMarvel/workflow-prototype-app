@@ -5,57 +5,60 @@ class Store extends EventEmitter {
     constructor(props) {
         super(props);
         this.post = {
-            postId: 2121,
-            createdDate: Date,
+            vendorName: null,
+            clientName: null,
+            requestId: null,
+            postTitle: null,
+            createdDate: new Date(),
             userId: 1,
             plagiarism: {
-                copyscape: true,
-                uniqueness: true, 
+                copyscape: false,
+                uniqueness: false, 
                 total: 2 
             }, 
             spellcheck: {
-                basic: true, 
-                vendorInfo: true,
-                wordUsage: true,
-                grammar: true,
+                basic: false, 
+                vendorInfo: false,
+                wordUsage: false,
+                grammar: false,
                 total: 4
             },
             writingProficiency: {
-                pov: true,
-                grammar: true,
-                readability: true,
+                pov: false,
+                grammar: false,
+                readability: false,
                 total: 3
             },
             topic: {
-                appropriateness: 2,
-                date: true,
+                appropriateness: 0,
+                date: false,
                 total: 1
             },
-            tone: true,
+            tone: false,
             focus: {
-                topic: 2,
-                headline: 2,
-                adverseness: true,
-                clientGoals: true,
-                headers: 2,
+                topic: 0,
+                headline: 0,
+                adverseness: false,
+                clientGoals: false,
+                headers: 0,
                 total: 5
             },
-            source: 2,
+            source: 0,
             performance: {
-                linkText: 2,
-                linkMatchesHeaders: 2,
+                linkText: 0,
+                linkMatchesHeaders: 0,
                 total: 5
             },
             compliance:{
-                words: true,
-                isEthical: true,
-                noMisleadingImpressions: true,
-                noFactualInaccuracies: true,
+                words: false,
+                isEthical: false,
+                noMisleadingImpressions: false,
+                noFactualInaccuracies: false,
                 total: 1
             },
             total: 31,
             score: 91,
-            status: true
+            status: false
         }
 
         this.on('change', this.reCalculate);
@@ -101,9 +104,21 @@ class Store extends EventEmitter {
         
         post.total = post.plagiarism.total + post.spellcheck.total + post.writingProficiency.total + post.topic.total + post.focus.total + post.performance.total + post.compliance.total + post.tone + post.source;
         
-        post.score = post.total/31 * 100;
-        post.status = "Achieved;"
+        post.score = Number.parseFloat(post.total/31 * 100).toFixed(2);
         
+        if(!post.plagiarism.copyscape || !post.topic.appropriateness || !post.compliance.noFactualInaccuracies){
+            post.status = "Did Not Achieve";
+        }
+
+        else if(post.score > 90){
+            post.status = "Achieved";
+        }
+        else if(post.score >= 72 && post.score < 90){
+            post.status = "Partially Achieved";
+        }
+        else if(post.score < 72){
+            post.status = "Did Not Achieve";
+        }
     }
 
     handleActions(action) {

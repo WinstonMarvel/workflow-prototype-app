@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import StandaloneQuestion from './StandaloneQuestion';
@@ -6,7 +7,7 @@ import CategorizedQuestion from './CategorizedQuestion';
 import MultiChoiceQuestion from './MultiChoiceQuestion';
 import StatusBar from './StatusBar';
 import PostDataStore from '../_stores/PostDataStore';
-import {updatePost, submitPost, updatePostData } from '../_actions/PostActions';
+import { updatePost, submitPost, updatePostData } from '../_actions/PostActions';
 
 import './index.css';
 
@@ -45,11 +46,10 @@ class Content extends Component {
       updatePostData( cat, id, value );
   }
 
-  // handleChangeMulti(cat, id, value){
-  //   updatePostData_multi(cat, id, Number(value))
-  // }
-
   render() {
+    if(!this.state.vendorName || !this.state.clientName || !this.state.requestId || !this.state.postTitle || !this.state.createdDate){
+      return <Redirect to='/' />
+    }
     return (
       <div>
         <Header />
@@ -88,7 +88,7 @@ class Content extends Component {
                 <MultiChoiceQuestion category="focus" id="headers" handler={ this.handleChangeCategorized } val={ this.state.focus.headers }>Does the content have user-focused headers that also describe the content below them? </MultiChoiceQuestion>
                 
                 <h2>Source</h2>
-                <MultiChoiceQuestion id="source" handler={ this.handleChangeSingle } val={ this.state.source } >Did the writer select appropriate sources to support the chosen topic?</MultiChoiceQuestion>
+                <MultiChoiceQuestion id="source" handler={ this.handleChangeCategorized } val={ this.state.source } >Did the writer select appropriate sources to support the chosen topic?</MultiChoiceQuestion>
                 
                 <h2>Performance</h2>
                 <MultiChoiceQuestion category="performance" id="linkText" handler={ this.handleChangeCategorized } val={ this.state.performance.linkText }>Does anchor text give users a clear understanding of where the link(s) will lead? </MultiChoiceQuestion>
@@ -96,10 +96,10 @@ class Content extends Component {
                 
                 <h2>Compliance with Ethical Rules</h2>
                 <CategorizedQuestion category="compliance" id="words" handler={ this.handleChangeCategorized } val={ this.state.compliance.words }>Does the content avoid words like expert, expertise, specialist or specialize? Acceptable use may include use when an attorney is a board-certified specialist. </CategorizedQuestion>
-                <CategorizedQuestion category="compliance" id="words" handler={ this.handleChangeCategorized } val={ this.state.compliance.isEthical }>Are there no obvious legal or factual inaccuracies the reviewer can see without consulting another source? Are common legal terms (e.g., plaintiff, prosecution) used correctly? A "no" to this question results in automatic failure to achieve, an JIRA ticket should be filed and the post should be taken down immediately. </CategorizedQuestion>
-                <CategorizedQuestion category="compliance" id="noMisleadingImpressions" handler={ this.handleChangeCategorized } val={ this.state.compliance.noMisleadingImpressions }>Is the content free from ethical issues (expertise, comparisons, promises results, conflicts of interest)?</CategorizedQuestion>
-                <CategorizedQuestion category="compliance" id="noFactualInaccuracies" handler={ this.handleChangeCategorized } val={ this.state.compliance.noFactualInaccuracies }>Does the content avoid misleading impressions or promising results?</CategorizedQuestion>
-                <button handler={this.formSubmit} className="btn btn-primary mt-5 mb-5" handler={ this.formSubmit } >Submit</button>
+                <CategorizedQuestion category="compliance" id="isEthical" handler={ this.handleChangeCategorized } val={ this.state.compliance.isEthical }>Is the content free from ethical issues (expertise, comparisons, promises results, conflicts of interest)?</CategorizedQuestion>
+                <CategorizedQuestion category="compliance" id="noMisleadingImpressions" handler={ this.handleChangeCategorized } val={ this.state.compliance.noMisleadingImpressions }>Does the content avoid misleading impressions or promising results?</CategorizedQuestion>
+                <CategorizedQuestion category="compliance" id="noFactualInaccuracies" handler={ this.handleChangeCategorized } val={ this.state.compliance.noFactualInaccuracies }>Are there no obvious legal or factual inaccuracies the reviewer can see without consulting another source? Are common legal terms (e.g., plaintiff, prosecution) used correctly? A "no" to this question results in automatic failure to achieve, an JIRA ticket should be filed and the post should be taken down immediately. </CategorizedQuestion>
+                <button onClick={this.formSubmit} className="btn btn-primary mt-5 mb-5" handler={ this.formSubmit } >Submit</button>
               </form>
             </article>
           <Sidebar />

@@ -5,8 +5,10 @@ import Dashboard from '../Dashboard';
 import Settings from '../Settings';
 import Signup from '../Login/Signup';
 import Content from '../Content';
+import EBP from '../_containers/EBP';
 import './App.css'; 
 import appDataStore from '../_stores/AppDataStore';
+import { checkToken } from '../_actions/AppActions';
 import Loader from 'react-loader-spinner';
 
 class App extends Component {
@@ -18,6 +20,7 @@ class App extends Component {
 
   componentWillMount(){
     appDataStore.on('change', this.getAppState);
+    checkToken();
   }
 
   getAppState(){
@@ -41,6 +44,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Dashboard} />
               <Route exact path='/tasks' component={Content} />
+              <Route exact path='/ebp' component={EBP} />
               <Route path='/settings' component={Settings} />
               <Route path='/signup' component={Signup} />
             </Switch>
