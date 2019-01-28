@@ -8,7 +8,7 @@ import Content from '../Content';
 import EBP from '../_containers/EBP';
 import './App.css'; 
 import appDataStore from '../_stores/AppDataStore';
-import { checkToken } from '../_actions/AppActions';
+import { checkToken, resetApp } from '../_actions/AppActions';
 import Loader from 'react-loader-spinner';
 
 class App extends Component {
@@ -28,7 +28,28 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.loading){
+    if(this.state.error){
+      return (
+        <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
+          <div class="alert alert-danger" role="alert">
+            <strong>Errors encountered:</strong> <br/>
+            { JSON.stringify(this.state.error) } <br/>
+            <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
+          </div>
+        </div>
+      );
+    }
+    if(this.state.submissionSuccess){
+      return (
+        <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
+          <div class="alert alert-success" role="alert">
+            <strong>Successfully added:</strong> <br/>
+            <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
+          </div>
+        </div>
+      );
+    }
+    else if(this.state.loading){
       return (
         <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
           <Loader type="Puff" color="#00BFFF" height="100" width="100" />

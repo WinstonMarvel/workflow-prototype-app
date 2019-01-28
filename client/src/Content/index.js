@@ -19,6 +19,7 @@ class Content extends Component {
     this.getPostData = this.getPostData.bind(this);
     this.handleChangeSingle = this.handleChangeSingle.bind(this);
     this.handleChangeCategorized = this.handleChangeCategorized.bind(this);
+    this.formFinalSubmit = this.formFinalSubmit.bind(this);
   }
 
   componentWillMount(){
@@ -36,6 +37,11 @@ class Content extends Component {
 
   formSubmit(event){ 
     event.preventDefault();
+    this.setState({confirmSubmission: true});
+  }
+  
+  formFinalSubmit(){
+    submitPost(PostDataStore.getPostData());
   }
 
   handleChangeSingle(id, value){
@@ -47,12 +53,30 @@ class Content extends Component {
   }
 
   render() {
-    if(!this.state.vendorName || !this.state.clientName || !this.state.requestId || !this.state.postTitle || !this.state.createdDate){
+    let confirmStatus = "confirm-submission d-none";
+    if(this.state.confirmSubmission){
+      confirmStatus = "confirm-submission";
+    }
+
+    if(!this.state.postInfo.vendorName || !this.state.postInfo.clientName || !this.state.postInfo.requestId || !this.state.postInfo.postTitle || !this.state.postInfo.postDate){
       return <Redirect to='/' />
     }
+    
     return (
       <div>
         <Header />
+        <div className={confirmStatus}>
+            <div className="confirm-box p-4">
+              <div className="form-group">
+                <p>Are you sure you want to submit these changes?</p>
+                <p><span>Total: </span> <strong>{ this.state.total }/31</strong></p>
+                <p><span>Score: </span> <strong>{ this.state.score } %</strong></p>
+                <p><span>Status: </span> <strong>{ this.state.status }</strong></p>
+                <button onClick={ this.formFinalSubmit } className="btn btn-primary mr-2">Yes</button>
+                <button onClick={ () => { this.setState( { confirmSubmission: false } ) } } className="btn btn-danger">No</button>
+              </div>
+            </div>
+        </div>
         <div className="container-fluid mw-1500">
           <div className="row d-flex justify-content-between">
             <article id="main-col" className="mt-5 pt-5">

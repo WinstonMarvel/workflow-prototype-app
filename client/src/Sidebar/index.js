@@ -21,7 +21,7 @@ class Sidebar extends Component {
               <div className="pl-2 pr-2">
                 <ul className="project-dates font-sm">
                   <li>Vendor Name: <span>{ this.state.vendorName }</span></li>
-                  <li>Date of Post: <span>{ this.state.createdDate.toString() }</span></li>
+                  <li>Date of Post: <span>{ this.state.postInfo.postDate.toString() }</span></li>
                   <li>Client Name: <span>{ this.state.clientName }</span></li>
                   <li>Request ID: <span>{ this.state.requestId }</span></li>
                   <li>Post Title: <span>{ this.state.postTitle }</span></li>

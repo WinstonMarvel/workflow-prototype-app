@@ -9,7 +9,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
-    "mongoose": "^5.4.1"
+    "mongoose": "^5.4.1",
+    "mongoose-unique-validator": "^2.0.2"
   },
   "scripts": {
     "start": "nodemon",

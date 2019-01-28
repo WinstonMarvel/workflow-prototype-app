@@ -5,34 +5,36 @@ class Store extends EventEmitter {
     constructor(props) {
         super(props);
         this.post = {
-            vendorName: null,
-            clientName: null,
-            requestId: null,
-            postTitle: null,
-            createdDate: new Date(),
-            userId: 1,
+            postInfo: {
+                vendorName: null,
+                clientName: null,
+                requestId: null,
+                postTitle: null,
+                postDate: null,
+                userId: 1
+            },
             plagiarism: {
                 copyscape: false,
                 uniqueness: false, 
-                total: 2 
+                total: 0 
             }, 
             spellcheck: {
                 basic: false, 
                 vendorInfo: false,
                 wordUsage: false,
                 grammar: false,
-                total: 4
+                total: 0
             },
             writingProficiency: {
                 pov: false,
                 grammar: false,
                 readability: false,
-                total: 3
+                total: 0
             },
             topic: {
                 appropriateness: 0,
                 date: false,
-                total: 1
+                total: 0
             },
             tone: false,
             focus: {
@@ -41,24 +43,24 @@ class Store extends EventEmitter {
                 adverseness: false,
                 clientGoals: false,
                 headers: 0,
-                total: 5
+                total: 0
             },
             source: 0,
             performance: {
                 linkText: 0,
                 linkMatchesHeaders: 0,
-                total: 5
+                total: 0
             },
             compliance:{
                 words: false,
                 isEthical: false,
                 noMisleadingImpressions: false,
                 noFactualInaccuracies: false,
-                total: 1
+                total: 0
             },
-            total: 31,
-            score: 91,
-            status: false
+            total: 0,
+            score: 0,
+            status: "Did Not Achieve"
         }
 
         this.on('change', this.reCalculate);
@@ -83,6 +85,10 @@ class Store extends EventEmitter {
     
     getPostData() {
         return this.post;
+    }
+
+    resetPostData(){
+        
     }
 
     reCalculate(){

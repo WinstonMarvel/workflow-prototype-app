@@ -37,11 +37,11 @@ class EBP extends Component {
   }
 
   handleChange(event){
-    updatePostData( null, event.target.name,  event.target.value );
+    updatePostData("postInfo", event.target.name,  event.target.value );
   }
 
   validateData(){
-      if(this.state.vendorName && this.state.clientName && this.state.requestId && this.state.postTitle && this.state.createdDate){
+      if(this.state.postInfo.vendorName && this.state.postInfo.clientName && this.state.postInfo.requestId && this.state.postInfo.postTitle && this.state.postInfo.postDate){
           this.setState({
             valid: true
           });
@@ -54,7 +54,7 @@ class EBP extends Component {
   }
 
   handleDate = date => {
-    updatePostData( null, "createdDate",  date );
+    updatePostData( "postInfo", "postDate",  date );
   }
 
   render() {
@@ -78,7 +78,7 @@ class EBP extends Component {
                 </div>
                 <div class="form-group">
                   <label htmlFor="formGroupExampleInput">Date of Post:</label>
-                  <DatePicker onChange={this.handleDate} value={this.state.createdDate}/>
+                  <DatePicker onChange={this.handleDate} value={this.state.postInfo.postDate}/>
                 </div>
                 <div class="form-group">
                   <label htmlFor="formGroupExampleInput">Client Name:</label>

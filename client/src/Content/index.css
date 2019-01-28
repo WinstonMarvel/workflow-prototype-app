@@ -165,3 +165,25 @@
   float: left;
   margin-left: 150px;
 }
+
+/********************** CONFIRM SUBMISSION BOX *********************/
+
+.confirm-submission{
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  top: 0;
+  left: 0;
+}
+
+.confirm-box{
+  background: #fff;
+  max-width: 500px;
+  margin: auto;
+  border-radius: 4px;
+}

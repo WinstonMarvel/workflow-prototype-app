@@ -87,3 +87,9 @@ export function logout(){
         type: "LOGOUT"
     });
 }
+
+export function resetApp(){
+    dispatcher.dispatch({
+        type: "APP_RESET"
+    });
+}

@@ -1,15 +1,14 @@
 let mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 
 let postSchema = new mongoose.Schema({
-    postId: {
-        type: Number,
-        index: {
-            unique: true,
-            dropDups: true
-        }
-    },
     postInfo: {
-        vendorName: {
+        requestId: {
+            type: Number,
+            required: true,
+            unique: true
+        },
+        vendorName: { 
             type: String,
             required: true
         },
@@ -17,7 +16,7 @@ let postSchema = new mongoose.Schema({
             type: String,
             required: true
         },
-        createdDate: {
+        postDate: {
             type: Date,
             required: true
         },
@@ -129,7 +128,7 @@ let postSchema = new mongoose.Schema({
         }
     },
     source: {
-        type: Boolean,
+        type: Number,
         required: true
     },
     performance: {
@@ -177,9 +176,15 @@ let postSchema = new mongoose.Schema({
         required: true
     },
     status: {
-        type: Boolean,
+        type: String,
         required: true
-    }
+    },
+    createdDate: {
+        type: Date,
+        required: true
+    },
 });
+
+postSchema.plugin(uniqueValidator);
 
 module.exports = new mongoose.model('post', postSchema);

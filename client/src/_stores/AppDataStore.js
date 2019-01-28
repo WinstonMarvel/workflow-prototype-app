@@ -9,12 +9,20 @@ class Store extends EventEmitter{
             isLoggedIn: false,
             userEmail: null,
             token: null,
-            isAdmin: false
+            isAdmin: false,
+            error: null,
+            submissionSuccess: false
         }
     }
     
     getAppState(){
         return this.appState;
+    }
+
+    resetAppState(){
+        this.appState.loading = false;
+        this.appState.error= null;
+        this.appState.submissionSuccess= false;
     }
 
     handleActions(action){
@@ -54,13 +62,21 @@ class Store extends EventEmitter{
                 break;
             }
 
-            case "LOCALSTORAGE_LOGIN": {
-
-            }
-
             case "APP_ERROR": {
                 this.appState.error = action.payload.error;
                 console.log("APP_ERROR: ", this.appState);
+                this.emit("change");
+                break;
+            }
+
+            case "APP_SUCCESS": {
+                this.appState.submissionSuccess = action.payload.success;
+                this.emit("change");
+                break;
+            }
+
+            case "APP_RESET": {
+                this.resetAppState();
                 this.emit("change");
                 break;
             }
