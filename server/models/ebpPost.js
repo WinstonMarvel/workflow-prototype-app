@@ -187,4 +187,4 @@ let postSchema = new mongoose.Schema({
 
 postSchema.plugin(uniqueValidator);
 
-module.exports = new mongoose.model('post', postSchema);
+module.exports = new mongoose.model('ebppost', postSchema);
