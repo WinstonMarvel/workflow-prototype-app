@@ -7,6 +7,7 @@ import CategorizedQuestion from '../_components/CategorizedQuestion';
 import MultiChoiceQuestion from '../_components/MultiChoiceQuestion';
 import StatusBar from '../_components/StatusBar';
 import PostDataStore from '../_stores/PostDataStore';
+import AppDataStore from '../_stores/AppDataStore';
 import { updatePost, submitPost, updatePostData } from '../_actions/PostActions';
 
 import '../_components/index.css';
@@ -42,7 +43,7 @@ class Content extends Component {
   }
   
   formFinalSubmit(){
-    submitPost(PostDataStore.getPostData());
+    submitPost(PostDataStore.getPostData(), AppDataStore.getCurrentFormType());
   }
 
   handleChangeSingle(id, value){

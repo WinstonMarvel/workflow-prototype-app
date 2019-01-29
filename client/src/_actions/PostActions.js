@@ -20,10 +20,11 @@ export function updatePostData(category, id, value){
     });
 }
 
-export function submitPost(obj){
+export function submitPost(obj, postType){
     dispatcher.dispatch({
         type: "LOADING_START"
     });
+    let url = "/posts/" + postType.toLowerCase();
     let options = {
         method: "POST",
         headers: {
@@ -31,7 +32,7 @@ export function submitPost(obj){
         },
         body: JSON.stringify( obj )
     };
-    fetch('/posts/', options)
+    fetch( url, options )
     .then( res => res.json() )
     .then( response =>{
          console.log('Success:', JSON.stringify(response));

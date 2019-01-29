@@ -35,7 +35,7 @@ let postSchema = new mongoose.Schema({
             required: true
         },
         uniqueness: {
-            type: String,
+            type: Boolean,
             required: true
         },
         total: {
