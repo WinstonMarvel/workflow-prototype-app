@@ -1,5 +1,14 @@
 import dispatcher from "../_dispatcher";
 
+export function newPost(formType){
+    dispatcher.dispatch({
+        type: "NEW_POST_FORM",
+        payload: {
+            postType: formType
+        }
+    });
+}  
+
 export function updatePostData(category, id, value){
     dispatcher.dispatch({
         type: "UPDATE_POST",

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from '../Login';
 import Dashboard from '../Dashboard';
+import Header from '../Header';
 import Settings from '../Settings';
 import Signup from '../Login/Signup';
-import Content from '../Content';
+import InitialDetails from '../_containers/InitialDetails';
 import EBP from '../_containers/EBP';
+import TBP from '../_containers/TBP';
 import './App.css'; 
 import appDataStore from '../_stores/AppDataStore';
 import { checkToken, resetApp } from '../_actions/AppActions';
@@ -16,6 +18,7 @@ class App extends Component {
     super(props);
     this.state = appDataStore.getAppState();
     this.getAppState = this.getAppState.bind(this);
+    this.state.submissionSuccess = null;
   }
 
   componentWillMount(){
@@ -30,23 +33,29 @@ class App extends Component {
   render() {
     if(this.state.error){
       return (
-        <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
-          <div class="alert alert-danger" role="alert">
-            <strong>Errors encountered:</strong> <br/>
-            { JSON.stringify(this.state.error) } <br/>
-            <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
-          </div>
-        </div>
+        //  <BrowserRouter>
+        //     <Header />
+            <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
+              <div class="alert alert-danger" role="alert">
+                <strong>Errors encountered:</strong> <br/>
+                { JSON.stringify(this.state.error) } <br/>
+                <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
+              </div>
+            </div>
+        // </BrowserRouter>
       );
     }
     if(this.state.submissionSuccess){
       return (
-        <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
-          <div class="alert alert-success" role="alert">
-            <strong>Successfully added:</strong> <br/>
-            <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
+        // <BrowserRouter>
+        //   <Header />
+          <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
+            <div class="alert alert-success" role="alert">
+              <strong>Successfully added:</strong> <br/>
+              <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
+            </div>
           </div>
-        </div>
+        // </BrowserRouter> 
       );
     }
     else if(this.state.loading){
@@ -64,8 +73,9 @@ class App extends Component {
         <BrowserRouter>
             <Switch>
               <Route exact path='/' component={Dashboard} />
-              <Route exact path='/tasks' component={Content} />
-              <Route exact path='/ebp' component={EBP} />
+              <Route exact path='/initial-details' component={ InitialDetails } />
+              <Route exact path='/ebp' component={ EBP } />
+              <Route exact path='/tbp' component={ TBP } />
               <Route path='/settings' component={Settings} />
               <Route path='/signup' component={Signup} />
             </Switch>

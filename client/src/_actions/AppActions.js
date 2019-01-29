@@ -92,4 +92,16 @@ export function resetApp(){
     dispatcher.dispatch({
         type: "APP_RESET"
     });
+    dispatcher.dispatch({
+        type: "RESET_POST"
+    });
+}
+
+export function newForm(form){
+    dispatcher.dispatch({
+        type: "NEW_FORM",
+        payload: {
+            formType: form
+        }
+    });
 }

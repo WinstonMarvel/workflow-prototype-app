@@ -37,7 +37,7 @@ class MultiChoiceQuestion extends Component {
                         </label>
                     </div>
                 </div>
-                <span className="custom-radios__questionText">{this.props.children}</span>
+                <span className="custom-radios__questionText">{this.props.children} { this.props.warning? <span className="text-danger"> { this.props.warning } </span> : "" }</span>
             </div>
         );
     }

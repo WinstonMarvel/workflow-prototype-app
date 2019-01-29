@@ -3,8 +3,19 @@ import { Link } from 'react-router-dom';
 import Login from '../Login';
 import './Dashboard.css';
 import Header from '../Header';
+import { newPost } from '../_actions/PostActions';
 
 class Dashboard extends Component {
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(formType){
+    newPost(formType);
+    this.props.history.push("/initial-details");
+  }
+
   render() {
     return (
       <div>
@@ -17,7 +28,7 @@ class Dashboard extends Component {
                   <h5 class="card-title">EBP Form</h5>
                   {/* <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
                   <p class="card-text">Choose this to rate a new EBP blog</p>
-                  <Link to="/ebp">Create New</Link>
+                  <a href="javascript:void(0)" onClick={ () => { this.handleClick("EBP"); } }>Create New</a>
                 </div>
               </div>
               <div class="card mx-5">
@@ -25,7 +36,7 @@ class Dashboard extends Component {
                   <h5 class="card-title">TBP Form</h5>
                   {/* <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
                   <p class="card-text">Choose this to rate a new EBP blog</p>
-                  <Link to="/login">Create New</Link>
+                  <a href="javascript:void(0)" onClick={ () => { this.handleClick("TBP"); } }>Create New</a>
                 </div>
               </div>
             </div>

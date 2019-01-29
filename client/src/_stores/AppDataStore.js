@@ -11,7 +11,8 @@ class Store extends EventEmitter{
             token: null,
             isAdmin: false,
             error: null,
-            submissionSuccess: false
+            submissionSuccess: null,
+            currentForm: null
         }
     }
     
@@ -19,10 +20,15 @@ class Store extends EventEmitter{
         return this.appState;
     }
 
+    getCurrentFormType(){
+        return this.appState.currentForm;
+    }
+
     resetAppState(){
         this.appState.loading = false;
         this.appState.error= null;
-        this.appState.submissionSuccess= false;
+        this.appState.submissionSuccess= null;
+        this.appState.currentForm = null;
     }
 
     handleActions(action){
@@ -77,6 +83,12 @@ class Store extends EventEmitter{
 
             case "APP_RESET": {
                 this.resetAppState();
+                this.emit("change");
+                break;
+            }
+
+            case "NEW_POST_FORM": {
+                this.appState.currentForm = action.payload.postType;
                 this.emit("change");
                 break;
             }

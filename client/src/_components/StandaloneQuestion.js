@@ -21,7 +21,7 @@ class StandaloneQuestion extends Component {
                         <i className="fa fa-check icon"></i>
                     </span>
                 </span>
-                <span className="labelq__questionText">{this.props.children}</span>
+                <span className="labelq__questionText">{this.props.children} { this.props.warning? <span className="text-danger"> { this.props.warning } </span> : "" }</span>
             </label>
         );
     }
