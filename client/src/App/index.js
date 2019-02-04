@@ -7,6 +7,7 @@ import Settings from '../Settings';
 import Signup from '../Login/Signup';
 import InitialDetails from '../_containers/InitialDetails';
 import EBP from '../_containers/EBP';
+import Export from '../_containers/Export';
 import TBP from '../_containers/TBP';
 import './App.css'; 
 import appDataStore from '../_stores/AppDataStore';
@@ -33,8 +34,6 @@ class App extends Component {
   render() {
     if(this.state.error){
       return (
-        //  <BrowserRouter>
-        //     <Header />
             <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
               <div class="alert alert-danger" role="alert">
                 <strong>Errors encountered:</strong> <br/>
@@ -42,20 +41,16 @@ class App extends Component {
                 <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
               </div>
             </div>
-        // </BrowserRouter>
       );
     }
     if(this.state.submissionSuccess){
       return (
-        // <BrowserRouter>
-        //   <Header />
           <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
             <div class="alert alert-success" role="alert">
               <strong>Successfully added:</strong> <br/>
               <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
             </div>
           </div>
-        // </BrowserRouter> 
       );
     }
     else if(this.state.loading){
@@ -76,8 +71,9 @@ class App extends Component {
               <Route exact path='/initial-details' component={ InitialDetails } />
               <Route exact path='/ebp' component={ EBP } />
               <Route exact path='/tbp' component={ TBP } />
-              <Route path='/settings' component={Settings} />
-              <Route path='/signup' component={Signup} />
+              <Route exact path='/export' component={ Export } />
+              <Route path='/settings' component={ Settings } />
+              <Route path='/signup' component={ Signup } />
             </Switch>
         </BrowserRouter>
       )
