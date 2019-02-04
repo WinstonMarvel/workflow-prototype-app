@@ -4,7 +4,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 let postSchema = new mongoose.Schema({
     postInfo: {
         requestId: {
-            type: Number,
+            type: String,
             required: true,
             unique: true
         },

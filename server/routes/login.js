@@ -41,21 +41,28 @@ module.exports = function(router, mongoose){
     
     router.post('/login/', (req, res) => {
         let password = req.body.password;
-        User.findOne({email: req.body.email}, function(err, user){
-            bcrypt.compare(password, user.password, function(err, match) {
-                if(match){
-                    console.log("Auth success");
-                    let token = jwt.sign({ user: req.body.email }, config.jwt.secret);
-                    res.status(200).json({ token: token });
-                }
-                else{
-                    console.log("fail");
-                    res.status(401).json({
-                        errorCode: 'E-mail or password incorrect'
-                    });
-                }
+        if( req.body.email && password ){
+            User.findOne({email: req.body.email}, function(err, user){
+                bcrypt.compare(password, user.password, function(err, match) {
+                    if(match){
+                        console.log("Auth success");
+                        let token = jwt.sign({ user: req.body.email }, config.jwt.secret);
+                        res.status(200).json({ token: token });
+                    }
+                    else{
+                        console.log("fail");
+                        res.status(401).json({
+                            errorCode: 'E-mail or password incorrect'
+                        });
+                    }
+                });
             });
-        });
+        }
+        else{
+            res.status(400).json({
+                errorCode: 'E-mail or password field is empty'
+            });
+        }
     });
 
     router.get('/protected', isLoggedIn, (req, res) => {

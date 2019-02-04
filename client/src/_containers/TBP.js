@@ -71,7 +71,7 @@ class Content extends Component {
             <div className="confirm-box p-4">
               <div className="form-group">
                 <p>Are you sure you want to submit these changes?</p>
-                <p><span>Total: </span> <strong>{ this.state.total }/31</strong></p>
+                <p><span>Total: </span> <strong>{ this.state.total }/29</strong></p>
                 <p><span>Score: </span> <strong>{ this.state.score } %</strong></p>
                 <p><span>Status: </span> <strong>{ this.state.status }</strong></p>
                 <button onClick={ this.formFinalSubmit } className="btn btn-primary mr-2">Yes</button>
@@ -82,7 +82,7 @@ class Content extends Component {
         <div className="container-fluid mw-1500">
           <div className="row d-flex justify-content-between">
             <article id="main-col" className="mt-5 pt-5">
-              <StatusBar total={this.state.total} totalPercent={this.state.score} status={this.state.status}></StatusBar>
+              <StatusBar total={this.state.total} totalPercent={this.state.score} status={this.state.status} totalPossiblePoints={29}></StatusBar>
               <form>
                 <h2>Plagiarism/Duplicate Content</h2>
                 <CategorizedQuestion category="plagiarism" id="copyscape" handler={ this.handleChangeCategorized } val={ this.state.plagiarism.copyscape }  warning="A 'no' to this question results in automatic failure to achieve, a JIRA ticket should be filed and the blog post should be taken down immediately.">Is the content free of plagiarism/duplicate content based on a Copyscape search?</CategorizedQuestion>

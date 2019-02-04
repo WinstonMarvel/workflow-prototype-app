@@ -21,7 +21,7 @@ const StatusBar = (props) => {
     return (
         <div className="statusbar mb-5 mx-auto d-flex justify-content-between">
             <div className="score-points p-4">
-                {props.total}/31
+                { props.total }/{ props.totalPossiblePoints }
             </div>
             <div className="score-percent p-4">
                 {props.totalPercent} %

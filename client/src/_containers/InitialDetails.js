@@ -89,7 +89,7 @@ class InitialDetails extends Component {
                 </div>
                 <div class="form-group">
                   <label htmlFor="formGroupExampleInput">Request ID:</label>
-                  <input name="requestId"  onChange={ this.handleChange }  type="number" className="form-control" id="formGroupExampleInput"  value={this.state.requestId} />
+                  <input name="requestId"  onChange={ this.handleChange }  type="text" className="form-control" id="formGroupExampleInput"  value={this.state.requestId} />
                 </div>
                 <div class="form-group">
                   <label htmlFor="formGroupExampleInput">Post Title:</label>
