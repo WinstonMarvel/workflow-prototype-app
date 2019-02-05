@@ -1,15 +1,21 @@
 var Excel = require('exceljs');
 
 function writeToExcel( obj, sheetSchema, formType, worksheet ){
-    obj.postInfo.blogType = formType;
-    if(formType == "EBP"){
+    obj.postInfo.blogType = formType.toUpperCase();
+    if(formType == "ebp"){
         obj.totalPossiblePoints = 31;
     }
-    else if(formType == "TBP"){
-        obj.totalPossiblePoints = 31;
+    else if(formType == "tbp"){
+        obj.totalPossiblePoints = 29;
     }
     for(var prop in sheetSchema){
-        if(sheetSchema[prop] instanceof Object){
+        if(sheetSchema[prop] instanceof Array){
+            sheetSchema[prop].map( (element) => {
+                let cell = worksheet.getCell(element);
+                cell.value = obj[prop];
+            });
+        }
+        else if(sheetSchema[prop] instanceof Object){
             for(nestedProp in sheetSchema[prop]){
                 let cell = worksheet.getCell(sheetSchema[prop][nestedProp]);
                 cell.value = obj[prop][nestedProp];

@@ -47,6 +47,6 @@ module.exports = {
     },
     total: "D34",
     totalPossiblePoints: "D35",
-    status: "D36",
-    score: "D37"
+    status: ["D36", "B8"],
+    score: ["D37", "B9"]
 }

@@ -3,7 +3,7 @@ let writeToExcel = require('./sheetWriter.js');
 
 let Post, sheetSchema;
 function decidePostType(req, res, next){
-    console.log(req.headers);
+    console.log(req.params.type);
     switch(req.params.type){
         case "ebp": {
             Post = require('../../models/ebpPost');
@@ -12,7 +12,7 @@ function decidePostType(req, res, next){
         }
         case "tbp": {
             Post = require('../../models/tbpPost');
-            sheetSchema = require('./ebpExcelSchema.js');
+            sheetSchema = require('./tbpExcelSchema.js');
             break;
         }
     }
@@ -33,6 +33,7 @@ module.exports = function(router, mongoose){
                 })
             }
             else{
+                console.log("Request ID not found", req.params.id);
                 res.status(400).json({
                     errorCode: 'Request ID was not found'
                 });
