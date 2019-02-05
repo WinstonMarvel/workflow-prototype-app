@@ -1,4 +1,6 @@
 import dispatcher from "../_dispatcher";
+import axios from 'axios';
+import download from 'downloadjs';
 
 export function newPost(formType){
     dispatcher.dispatch({
@@ -68,4 +70,46 @@ export function submitPost(obj, postType){
             type: "LOADING_COMPLETE"
         });
     } );
+}
+
+
+export function exportPostData(postType, requestId){
+    dispatcher.dispatch({
+        type: "LOADING_START"
+    });
+    let url = `/export/${postType}/${requestId}`;
+    axios( {
+        url: url,
+        method: 'GET',
+        responseType: 'blob' 
+    }).
+    then( (response) => {
+        if( response.status == 200 ){
+            download( new Blob([response.data]), `Report-${requestId}.xlsx`, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" )
+        }
+        dispatcher.dispatch({
+            type: "LOADING_COMPLETE"
+        });
+    } )
+    .catch( (err) => {
+        if( err.response.status == 400 ){
+            dispatcher.dispatch({
+                type: "APP_ERROR",
+                payload: {
+                    error: "Are you sure you entered the corrrect requestID?"
+                }
+            });
+        }
+        else{
+            dispatcher.dispatch({
+                type: "APP_ERROR",
+                payload: {
+                    error: err
+                }
+            });
+        }
+        dispatcher.dispatch({
+            type: "LOADING_COMPLETE"
+        });
+    } )
 }

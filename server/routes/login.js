@@ -1,4 +1,3 @@
-let mongoose = require('mongoose');
 let User = require('../models/user');
 let config = require('../config.json');
 let jwt = require('jsonwebtoken');
