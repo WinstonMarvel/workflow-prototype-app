@@ -35,8 +35,8 @@
   margin-right: -100%;
   display: inline-block;
   border-radius: 50%;
-  border: 5px solid rgba(171, 37, 37, 0.3);
-  background: white;
+  border: 5px solid rgba(171, 37, 37, 0.5);
+  background: rgb(196, 46, 46);
   vertical-align: middle;
   width: 2em;
   height: 2em;
@@ -47,18 +47,16 @@
   transition: border .3s ease;
 }
 .labelq__check i.icon {
-  opacity: 0.2;
+  opacity: 1;
   font-size: calc(2rem);
-  color: transparent;
+  color: #fff;
   transition: opacity .3s .1s ease;
   -webkit-text-stroke: 3px rgb(171, 37, 37);
 }
 .labelq__check .fa-check.icon{
   display: none;
 }
-.labelq__check:hover {
-  border: 5px solid rgba(0, 0, 0, 0.2);
-}
+
 .labelq__checkbox:checked + .labelq__text .labelq__check {
   animation: check 0.5s cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
 }
@@ -168,7 +166,7 @@
   color: #fff;
 }
 .custom-radios div:first-child input[type="radio"]:checked + label span{
-  background-color: #ff0000;
+  background-color:  rgb(171, 37, 37);
 }
 .custom-radios div:nth-child(2) input[type="radio"]:checked + label span{
   background-color: #ff9e00;

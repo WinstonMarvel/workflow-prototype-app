@@ -49,53 +49,53 @@ class Store extends EventEmitter {
                     userId: 1
                 },
                 plagiarism: {
-                    copyscape: false,
-                    uniqueness: false, 
-                    total: 0 
+                    copyscape: true,
+                    uniqueness: true, 
+                    total: 2 
                 }, 
                 spellcheck: {
-                    basic: false, 
-                    vendorInfo: false,
-                    wordUsage: false,
-                    grammar: false,
-                    total: 0
+                    basic: true, 
+                    vendorInfo: true,
+                    wordUsage: true,
+                    grammar: true,
+                    total: 2
                 },
                 writingProficiency: {
-                    pov: false,
-                    grammar: false,
-                    readability: false,
-                    total: 0
+                    pov: true,
+                    grammar: true,
+                    readability: true,
+                    total: 3
                 },
                 topic: {
-                    appropriateness: 0,
-                    date: false,
-                    total: 0
+                    appropriateness: 2,
+                    date: true,
+                    total: 3
                 },
-                tone: false,
+                tone: true,
                 focus: {
-                    topic: 0,
-                    headline: 0,
-                    adverseness: false,
-                    clientGoals: false,
-                    headers: 0,
-                    total: 0
+                    topic: 2,
+                    headline: 2,
+                    adverseness: true,
+                    clientGoals: true,
+                    headers: 2,
+                    total: 8
                 },
-                source: 0,
+                source: 2,
                 performance: {
-                    linkText: 0,
-                    linkMatchesHeaders: 0,
-                    total: 0
+                    linkText: 2,
+                    linkMatchesHeaders: 2,
+                    total: 4
                 },
                 compliance:{
-                    words: false,
-                    isEthical: false,
-                    noMisleadingImpressions: false,
-                    noFactualInaccuracies: false,
-                    total: 0
+                    words: true,
+                    isEthical: true,
+                    noMisleadingImpressions: true,
+                    noFactualInaccuracies: true,
+                    total: 4
                 },
-                total: 0,
-                score: 0,
-                status: "Did Not Achieve"
+                total: 31,
+                score: 31,
+                status: "Achieved"
             }
         }
         if(formType == "TBP"){
@@ -109,51 +109,51 @@ class Store extends EventEmitter {
                     userId: 1
                 },
                 plagiarism: {
-                    copyscape: false,
-                    uniqueness: false, 
-                    total: 0 
+                    copyscape: true,
+                    uniqueness: true, 
+                    total: 2 
                 }, 
                 spellcheck: {
-                    basic: false, 
-                    vendorInfo: false,
-                    wordUsage: false,
-                    grammar: false,
-                    total: 0
+                    basic: true, 
+                    vendorInfo: true,
+                    wordUsage: true,
+                    grammar: true,
+                    total: 4
                 },
                 writingProficiency: {
-                    pov: false,
-                    grammar: false,
-                    readability: false,
-                    total: 0
+                    pov: true,
+                    grammar: true,
+                    readability: true,
+                    total: 3
                 },
                 topic: {
-                    appropriateness: 0,
-                    date: false,
-                    total: 0
+                    appropriateness: 2,
+                    date: true,
+                    total: 3
                 },
                 focus: {
-                    topic: 0,
-                    headline: 0,
-                    appropriateness: false,
-                    clientPracGoals: 0,
-                    total: 0
+                    topic: 2,
+                    headline: 2,
+                    appropriateness: true,
+                    clientPracGoals: 2,
+                    total: 7
                 },
-                source: 0,
+                source: 2,
                 performance: {
-                    linkText: 0,
-                    linkMatchesHeaders: 0,
-                    total: 0
+                    linkText: 2,
+                    linkMatchesHeaders: 2,
+                    total: 4
                 },
                 compliance:{
-                    words: false,
-                    isEthical: false,
-                    noMisleadingImpressions: false,
-                    noFactualInaccuracies: false,
-                    total: 0
+                    words: true,
+                    isEthical: true,
+                    noMisleadingImpressions: true,
+                    noFactualInaccuracies: true,
+                    total: 4
                 },
-                total: 0,
-                score: 0,
-                status: "Did Not Achieve"
+                total: 29,
+                score: 29,
+                status: "Achieved"
             }
         }
     }

@@ -106,7 +106,7 @@ class Content extends Component {
                 <h2>User-Focused Content/Conversion</h2>
                 <MultiChoiceQuestion category="focus" id="topic" handler={ this.handleChangeCategorized } val={ this.state.focus.topic }>Does the content stay focused on topic? Does the content match the page topic?</MultiChoiceQuestion>
                 <MultiChoiceQuestion category="focus" id="headline" handler={ this.handleChangeCategorized } val={ this.state.focus.headline }>Does the content contain an interesting headline?</MultiChoiceQuestion>
-                <CategorizedQuestion category="focus" id="appropriateness" handler={ this.handleChangeCategorized } val={ this.state.focus.adverseness }>Are the tone and content appropriate for audience? Is the firm accurately represented? Content would not be considered puerile or offensive to an average and reasonable reader.</CategorizedQuestion>
+                <CategorizedQuestion category="focus" id="appropriateness" handler={ this.handleChangeCategorized } val={ this.state.focus.appropriateness }>Are the tone and content appropriate for audience? Is the firm accurately represented? Content would not be considered puerile or offensive to an average and reasonable reader.</CategorizedQuestion>
                 <MultiChoiceQuestion category="focus" id="clientPracGoals" handler={ this.handleChangeCategorized } val={ this.state.focus.clientPracGoals }>Is the content consistent with client's practice areas and goals as outlined in CoPortal?</MultiChoiceQuestion>
                 
                 
