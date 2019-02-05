@@ -53,6 +53,9 @@
   transition: opacity .3s .1s ease;
   -webkit-text-stroke: 3px rgb(171, 37, 37);
 }
+.labelq__check .fa-check.icon{
+  display: none;
+}
 .labelq__check:hover {
   border: 5px solid rgba(0, 0, 0, 0.2);
 }
@@ -65,6 +68,12 @@
   color: white;
   -webkit-text-stroke: 0;
   animation: icon 0.3s cubic-bezier(1, 0.008, 0.565, 1.65) 0.1s 1 forwards;
+}
+.labelq__checkbox:checked + .labelq__text .labelq__check .fa-check.icon{
+  display: inline;
+}
+.labelq__checkbox:checked + .labelq__text .labelq__check .fa-times.icon{
+  display: none;
 }
 .labelq__questionText{
   display: block;
@@ -156,9 +165,20 @@
 }
 
 .custom-radios input[type="radio"]:checked + label span{
-  background-color: #00d478;
   color: #fff;
 }
+.custom-radios div:first-child input[type="radio"]:checked + label span{
+  background-color: #ff0000;
+}
+.custom-radios div:nth-child(2) input[type="radio"]:checked + label span{
+  background-color: #ff9e00;
+}
+.custom-radios div:nth-child(3) input[type="radio"]:checked + label span{
+  background-color: #00d478;
+}
+
+
+
 
 .custom-radios__questionText{
   display: block;
