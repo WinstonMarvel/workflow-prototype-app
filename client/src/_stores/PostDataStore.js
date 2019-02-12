@@ -45,7 +45,7 @@ class Store extends EventEmitter {
                     clientName: null,
                     requestId: null,
                     postTitle: null,
-                    postDate: null,
+                    postDate: new Date(),
                     userId: 1
                 },
                 plagiarism: {
@@ -105,7 +105,7 @@ class Store extends EventEmitter {
                     clientName: null,
                     requestId: null,
                     postTitle: null,
-                    postDate: null,
+                    postDate: new Date(),
                     userId: 1
                 },
                 plagiarism: {

@@ -35,7 +35,7 @@ export function login(username, password, keepMeLoggedIn){
             "password" : password
         })
     };
-    fetch('/login/', options)
+    fetch('/api/login/', options)
     .then( res => {
         return res.json().then( data => ({ status: res.status, body: data }) )
     })

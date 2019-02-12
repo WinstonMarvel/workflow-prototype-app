@@ -26,7 +26,7 @@ export function submitPost(obj, postType){
     dispatcher.dispatch({
         type: "LOADING_START"
     });
-    let url = "/posts/" + postType.toLowerCase();
+    let url = "/api/posts/" + postType.toLowerCase();
     let options = {
         method: "POST",
         headers: {
@@ -77,7 +77,7 @@ export function exportPostData(postType, requestId){
     dispatcher.dispatch({
         type: "LOADING_START"
     });
-    let url = `/export/${postType}/${requestId}`;
+    let url = `/api/export/${postType}/${requestId}`;
     axios( {
         url: url,
         method: 'GET',

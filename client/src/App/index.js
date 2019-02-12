@@ -8,6 +8,7 @@ import Signup from '../Login/Signup';
 import InitialDetails from '../_containers/InitialDetails';
 import EBP from '../_containers/EBP';
 import Export from '../_containers/Export';
+import Report from '../_containers/Report';
 import TBP from '../_containers/TBP';
 import './App.css'; 
 import appDataStore from '../_stores/AppDataStore';
@@ -72,6 +73,7 @@ class App extends Component {
               <Route exact path='/ebp' component={ EBP } />
               <Route exact path='/tbp' component={ TBP } />
               <Route exact path='/export' component={ Export } />
+              <Route exact path='/report' component={ Report } />
               <Route path='/settings' component={ Settings } />
               <Route path='/signup' component={ Signup } />
             </Switch>

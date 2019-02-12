@@ -44,6 +44,13 @@ class Dashboard extends Component {
                   <Link to = "/export" >Create Export</Link>
                 </div>
               </div>
+              <div class="card mx-5">
+                <div class="card-body">
+                  <h5 class="card-title">Report</h5>
+                  <p class="card-text">Choose this to see a data report</p>
+                  <Link to = "/report" >Get Report</Link>
+                </div>
+              </div>
             </div>
           </article>
         </div>
