@@ -4,19 +4,30 @@ import dispatcher from '../_dispatcher.js';
 class Store extends EventEmitter{
     constructor(props){
         super(props);
-        this.report = null
+        this.data = {
+            fromDate: new Date( (new Date).getFullYear(), 0, 1 ),
+            toDate: new Date(),
+            postType: "ebp",
+            report: null
+        }
     }
 
     handleActions(action){
         switch(action.type){
             case "NEW_REPORT": 
-            this.report = action.payload
+            this.data.report = action.payload
+            break;
+        }
+
+        switch(action.type){
+            case "UPDATE_REPORT": 
+            this.data[id] = action.payload.value
             break;
         }
     }
 
     getData(){
-        return this.report;
+        return this.data;
     }
 }
 
