@@ -13,7 +13,12 @@
   list-style: none;
 }
 
+/********* BOXES ***********/
 
+/*Dashboard boxes*/
+.boxes > .card {
+  width: 35%;
+}
 
 
 /****** CHECKBOX CSS ********/

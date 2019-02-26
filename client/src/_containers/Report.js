@@ -3,7 +3,7 @@ import Header from '../Header';
 import { getReport, updateReport } from '../_actions/ReportActions';
 import ReportData from '../_stores/ReportData';
 import DatePicker from 'react-date-picker'; 
-import {XYPlot, RadialChart, ArcSeries} from 'react-vis';
+import { XYPlot, RadialChart, ArcSeries } from 'react-vis';
 
 
 class Report extends Component {
@@ -12,9 +12,23 @@ class Report extends Component {
     this.formSubmit = this.formSubmit.bind(this);
     this.handleDate = this.handleDate.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.getReportData = this.getReportData.bind(this);
+    this.state = {
+
+    }
   }
 
   componentWillMount(){
+    this.getReportData();
+    ReportData.on('change', this.getReportData);
+  }
+
+  componentWillUnMount(){
+    ReportData.removeListener('change', this.getReportData);
+  }
+
+  getReportData(){
+    console.log("got data")
     this.setState({
       data: ReportData.getData()
     });
@@ -26,12 +40,13 @@ class Report extends Component {
   }
 
   handleDate = ( date, type ) => {
-    updateReport(
-        [type]: date
-    );
+    updateReport( { 
+      [type]: date
+     } );
   }
 
   handleChange = (e) => {
+    console.log(e.target.value);
     updateReport({ 
         postType: e.target.value 
     });

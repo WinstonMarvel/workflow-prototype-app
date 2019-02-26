@@ -34,12 +34,9 @@ export function getReport( start, end, postType ){
     
 }
 
-export function updateReport( id, value ){
+export function updateReport( data ){
     dispatcher.dispatch({
         type: "UPDATE_REPORT",
-        payload: {
-            id: id,
-            value: value
-        }
+        payload: data
     });
 }

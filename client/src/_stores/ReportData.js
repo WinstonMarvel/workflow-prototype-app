@@ -15,13 +15,19 @@ class Store extends EventEmitter{
     handleActions(action){
         switch(action.type){
             case "NEW_REPORT": 
-            this.data.report = action.payload
+            this.data.report = action.payload;
+            this.emit("change");
             break;
         }
 
         switch(action.type){
             case "UPDATE_REPORT": 
-            this.data[id] = action.payload.value
+            console.log(action.payload);
+            for(let prop in action.payload){
+                this.data[prop] = action.payload[prop]
+            }
+            this.emit("change");
+            console.log(this.data);
             break;
         }
     }
