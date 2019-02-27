@@ -1,5 +1,6 @@
 let config = require('../../config.json');
 let writeToExcel = require('./sheetWriter.js');
+let isLoggedIn =  require('../middleware').isLoggedIn;
 
 let Post, sheetSchema;
 function decidePostType(req, res, next){
@@ -20,7 +21,7 @@ function decidePostType(req, res, next){
 }
 
 module.exports = function(router, mongoose){
-    router.get('/export/:type/:id', decidePostType, (req, res) => {
+    router.get('/export/:type/:id',  isLoggedIn, decidePostType, (req, res) => {
         Post.findOne({ "postInfo.requestId" : req.params.id }, (err, post) => {
             if(post){
                 writeToExcel( post, sheetSchema, req.params.type, function(){

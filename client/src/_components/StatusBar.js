@@ -6,15 +6,15 @@ const StatusBar = (props) => {
         console.log(props.status);
         switch(props.status) {
             case "Achieved":
-                return(<div className="status p-4 text-success">Achieved</div>)
+                return(<span className="d-block status p-4 text-success">Achieved</span>)
                 break;
             
             case "Partially Achieved":
-                return(<div className="status p-4 text-warning">Partially Achieved</div>)
+                return(<span className="d-block status p-4 text-warning">Partially Achieved</span>)
                 break;
 
             case "Did Not Achieve":
-                return(<div className="status p-4 text-danger">Did not Achieve</div>)
+                return(<span className="d-block status p-4 text-danger">Did not Achieve</span>)
                 break
         }
     };

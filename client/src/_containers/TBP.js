@@ -30,7 +30,7 @@ class Content extends Component {
   }
 
   componentWillUnmount(){
-      PostDataStore.removeListener('change', this.getStatus);
+      PostDataStore.removeListener('change', this.getPostData);
   }
 
   getPostData(){

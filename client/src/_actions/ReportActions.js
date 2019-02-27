@@ -1,4 +1,5 @@
 import dispatcher from '../_dispatcher.js';
+import AppDataStore from '../_stores/AppDataStore';
 
 export function getReport( start, end, postType ){
     dispatcher.dispatch({
@@ -8,7 +9,8 @@ export function getReport( start, end, postType ){
     fetch(url, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + AppDataStore.getToken()
         },
         body: JSON.stringify({
             "startDate": start,

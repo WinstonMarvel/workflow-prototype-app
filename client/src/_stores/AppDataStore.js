@@ -24,6 +24,10 @@ class Store extends EventEmitter{
         return this.appState.currentForm;
     }
 
+    getToken(){
+        return this.appState.token;
+    }
+
     resetAppState(){
         this.appState.loading = false;
         this.appState.error= null;

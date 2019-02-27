@@ -30,7 +30,7 @@ class Content extends Component {
   }
 
   componentWillUnmount(){
-      PostDataStore.removeListener('change', this.getStatus);
+      PostDataStore.removeListener('change', this.getPostData);
   }
 
   getPostData(){
@@ -125,7 +125,7 @@ class Content extends Component {
                 <CategorizedQuestion category="compliance" id="isEthical" handler={ this.handleChangeCategorized } val={ this.state.compliance.isEthical }>Is the content free from ethical issues (expertise, comparisons, promises results, conflicts of interest)?</CategorizedQuestion>
                 <CategorizedQuestion category="compliance" id="noMisleadingImpressions" handler={ this.handleChangeCategorized } val={ this.state.compliance.noMisleadingImpressions }>Does the content avoid misleading impressions or promising results?</CategorizedQuestion>
                 <CategorizedQuestion category="compliance" id="noFactualInaccuracies" handler={ this.handleChangeCategorized } val={ this.state.compliance.noFactualInaccuracies } warning="A 'no' to this question results in automatic failure to achieve, a JIRA ticket should be filed and the blog post should be taken down immediately.">Are there no obvious legal or factual inaccuracies the reviewer can see without consulting another source? Are common legal terms (e.g., plaintiff, prosecution) used correctly?</CategorizedQuestion>
-                <button onClick={this.formSubmit} className="btn btn-primary mt-5 mb-5" handler={ this.formSubmit } >Submit</button>
+                <button onClick={ this.formSubmit } className="btn btn-primary mt-5 mb-5" >Submit</button>
               </form>
             </article>
           <Sidebar />

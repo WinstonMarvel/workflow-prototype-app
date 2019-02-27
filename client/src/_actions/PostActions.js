@@ -1,6 +1,7 @@
 import dispatcher from "../_dispatcher";
 import axios from 'axios';
 import download from 'downloadjs';
+import AppDataStore from '../_stores/AppDataStore';
 
 export function newPost(formType){
     dispatcher.dispatch({
@@ -30,7 +31,8 @@ export function submitPost(obj, postType){
     let options = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + AppDataStore.getToken()
         },
         body: JSON.stringify( obj )
     };
@@ -81,7 +83,10 @@ export function exportPostData(postType, requestId){
     axios( {
         url: url,
         method: 'GET',
-        responseType: 'blob' 
+        responseType: 'blob',
+        headers: {
+            "Authorization": "Bearer " + AppDataStore.getToken()
+        }
     }).
     then( (response) => {
         if( response.status == 200 ){

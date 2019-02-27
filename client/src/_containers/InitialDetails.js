@@ -19,12 +19,12 @@ class InitialDetails extends Component {
 
   componentWillMount(){
     PostDataStore.reCalculate();
-    PostDataStore.on("change", this.getPostData);
+    PostDataStore.on('change', this.getPostData);
     this.postType = AppDataStore.getCurrentFormType();
   }
  
   componentWillUnmount(){
-      PostDataStore.removeListener('change', this.getStatus);
+      PostDataStore.removeListener('change', this.getPostData);
   }
 
   getPostData(){
