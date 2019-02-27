@@ -1,3 +1,5 @@
+let isLoggedIn =  require('./middleware').isLoggedIn;
+
 let Post;
 function decidePostType(req, res, next){
     switch(req.params.type){
@@ -40,7 +42,7 @@ function getReport(postList){
 
 
 module.exports = function(router, mongoose){
-    router.post('/reports/:type', decidePostType, (req, res) => {
+    router.post('/reports/:type', isLoggedIn, decidePostType, (req, res) => {
         Post.find({
             "postInfo.postDate": {
                 $gte: req.body.startDate,

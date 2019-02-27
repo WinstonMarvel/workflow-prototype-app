@@ -1,3 +1,5 @@
+let isLoggedIn =  require('./middleware').isLoggedIn;
+
 let Post;
 function decidePostType(req, res, next){
     console.log(req.headers);
@@ -16,7 +18,7 @@ function decidePostType(req, res, next){
 
 module.exports = function(router, mongoose){
     
-    router.get('/posts/:type', decidePostType, (req, res) =>{
+    router.get('/posts/:type', isLoggedIn, decidePostType, (req, res) =>{
         Post.find(function(err, list){
             if(err){
                 console.log(err);
@@ -28,7 +30,7 @@ module.exports = function(router, mongoose){
         });
     });
     
-    router.get('/post/:type/:id', decidePostType, (req, res) =>{
+    router.get('/post/:type/:id', isLoggedIn, decidePostType, (req, res) =>{
         decidePostType(req.params.type);
         Post.find({requestId: req.params.id}, function(err, post){
             if(err){
@@ -46,9 +48,10 @@ module.exports = function(router, mongoose){
         });
     });
     
-    router.post('/posts/:type', decidePostType, (req, res) =>{ 
+    router.post('/posts/:type', isLoggedIn, decidePostType, (req, res) =>{ 
         req.body.createdDate = new Date();
         let newPost = new Post(req.body);
+        newPost.postInfo.userId = req.user;
         newPost.save(function(err, newPost){
             if(err){
                 console.log(err);
@@ -65,7 +68,7 @@ module.exports = function(router, mongoose){
         }); 
     });
 
-    router.put('/post/:type/:id', decidePostType, (req, res) =>{
+    router.put('/post/:type/:id', isLoggedIn, decidePostType, (req, res) =>{
         Post.findOneAndUpdate({requestId: req.params.id}, req.body, function(err, post){
             if(err){
                 console.log(err);
@@ -82,7 +85,7 @@ module.exports = function(router, mongoose){
         });
     });
     
-    router.delete('/post/:type/:id', decidePostType, (req, res) =>{
+    router.delete('/post/:type/:id', isLoggedIn, decidePostType, (req, res) =>{
         Post.findOneAndDelete({requestId: req.params.id}, function(err, post){
             if(err){
                 console.log(err);

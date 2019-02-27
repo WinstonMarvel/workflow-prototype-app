@@ -23,7 +23,7 @@ class Login extends Component {
         return(
             <div className="container">
                 <form action="javascript:void(0)" className="login-form align-center p-4 mx-auto">
-                    <img src={icon} class="mx-auto d-block mt-3 mb-5 login-icon"/>
+                    <img src={icon} className="mx-auto d-block mt-3 mb-5 login-icon"/>
                     <div className="form-group">
                         <input type="email" className="form-control" placeholder="Email Address" name="username" id="email" value={ this.state.username } onChange={this.handleChange} />
                     </div>

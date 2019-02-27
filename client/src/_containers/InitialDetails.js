@@ -22,8 +22,8 @@ class InitialDetails extends Component {
     PostDataStore.on("change", this.getPostData);
     this.postType = AppDataStore.getCurrentFormType();
   }
-
-  componentWillUnMount(){
+ 
+  componentWillUnmount(){
       PostDataStore.removeListener('change', this.getStatus);
   }
 
@@ -68,30 +68,32 @@ class InitialDetails extends Component {
             <article id="main-col" className="mt-5 pt-5">
               <h2>Post Details:</h2>
               {
-                this.state.valid? <div class="alert alert-primary" role="alert">
+                this.state.valid? 
+                <div className="alert alert-primary" role="alert">
                 All fields have been filled, click next to begin
-              </div> : <div class="alert alert-danger" role="alert">
-                Please ensure that all fields are filled
-              </div>
+                </div> : 
+                <div className="alert alert-danger" role="alert">
+                  Please ensure that all fields are filled
+                </div>
               }
               <form onChange={this.validateData}>
-                <div class="form-group">
+                <div className="form-group">
                   <label htmlFor="formGroupExampleInput">Vendor Name:</label>
                   <input type="text" name="vendorName" onChange={ this.handleChange } className="form-control" id="formGroupExampleInput" value={this.state.vendorName} />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label htmlFor="formGroupExampleInput">Date of Post:</label>
                   <DatePicker onChange={this.handleDate} value={this.state.postInfo.postDate}/>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label htmlFor="formGroupExampleInput">Client Name:</label>
                   <input name="clientName"  onChange={ this.handleChange }  type="text" className="form-control" id="formGroupExampleInput"  value={this.state.clientName} />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label htmlFor="formGroupExampleInput">Request ID:</label>
                   <input name="requestId"  onChange={ this.handleChange }  type="text" className="form-control" id="formGroupExampleInput"  value={this.state.requestId} />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label htmlFor="formGroupExampleInput">Post Title:</label>
                   <input name="postTitle"  onChange={ this.handleChange }  type="text" className="form-control" id="formGroupExampleInput"  value={this.state.postTitle} />
                 </div>

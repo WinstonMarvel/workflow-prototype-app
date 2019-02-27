@@ -25,60 +25,70 @@ export function login(username, password, keepMeLoggedIn){
     dispatcher.dispatch({
         type: "LOADING_START"
     });
-    let options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "email" : username,
-            "password" : password
+    if( username && password.toString() ){
+        let options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "email" : username,
+                "password" : password
+            })
+        };
+        fetch('/api/login/', options)
+        .then( res => {
+            return res.json().then( data => ({ status: res.status, body: data }) )
         })
-    };
-    fetch('/api/login/', options)
-    .then( res => {
-        return res.json().then( data => ({ status: res.status, body: data }) )
-    })
-    .then( res => {
-        console.log("login_action: ", res);
-        if(res.status == 200){
-            var user = {
-                username: username,
-                token: res.body.token
-            };
-            console.log(res);
-            localStorage.setItem('user', JSON.stringify(user));
-            dispatcher.dispatch({
-                type: "LOGIN",
-                payload: {
-                    email: username,
+        .then( res => {
+            console.log("login_action: ", res);
+            if(res.status == 200){
+                var user = {
+                    username: username,
                     token: res.body.token
-                }
+                };
+                console.log(res);
+                localStorage.setItem('user', JSON.stringify(user));
+                dispatcher.dispatch({
+                    type: "LOGIN",
+                    payload: {
+                        email: username,
+                        token: res.body.token
+                    }
+                });
+            }
+            else{
+                dispatcher.dispatch({
+                    type: "APP_ERROR",
+                    payload: {
+                        error: "Incorrect Credentials"
+                    }
+                });
+            }
+            dispatcher.dispatch({
+                type: "LOADING_COMPLETE"
             });
-        }
-        else{
+        }).catch((err) => {
+            console.log("error: ", err);
             dispatcher.dispatch({
                 type: "APP_ERROR",
                 payload: {
-                    error: "Incorrect Credentials"
+                    error: err
                 }
             });
-        }
-        dispatcher.dispatch({
-            type: "LOADING_COMPLETE"
+            dispatcher.dispatch({
+                type: "LOADING_COMPLETE"
+            });
         });
-    }).catch((err) => {
-        console.log("error: ", err);
+    }
+    else{
         dispatcher.dispatch({
             type: "APP_ERROR",
             payload: {
-                error: err
+                error: "Username or Password cannot be empty"
             }
         });
-        dispatcher.dispatch({
-            type: "LOADING_COMPLETE"
-        });
-    });
+    }
 }
 
 export function logout(){

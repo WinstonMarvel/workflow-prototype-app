@@ -29,7 +29,7 @@ class Content extends Component {
     this.setState({confirmSubmission: false});
   }
 
-  componentWillUnMount(){
+  componentWillUnmount(){
       PostDataStore.removeListener('change', this.getStatus);
   }
 

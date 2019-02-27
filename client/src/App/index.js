@@ -35,8 +35,8 @@ class App extends Component {
   render() {
     if(this.state.error){
       return (
-            <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
-              <div class="alert alert-danger" role="alert">
+            <div className="mx-auto d-table" style={{marginTop: '40vh'}}>
+              <div className="alert alert-danger" role="alert">
                 <strong>Errors encountered:</strong> <br/>
                 { JSON.stringify(this.state.error) } <br/>
                 <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
@@ -46,8 +46,8 @@ class App extends Component {
     }
     if(this.state.submissionSuccess){
       return (
-          <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
-            <div class="alert alert-success" role="alert">
+          <div className="mx-auto d-table" style={{marginTop: '40vh'}}>
+            <div className="alert alert-success" role="alert">
               <strong>Successfully added:</strong> <br/>
               <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
             </div>
@@ -56,7 +56,7 @@ class App extends Component {
     }
     else if(this.state.loading){
       return (
-        <div class="mx-auto d-table" style={{marginTop: '40vh'}}>
+        <div className="mx-auto d-table" style={{marginTop: '40vh'}}>
           <Loader type="Puff" color="#00BFFF" height="100" width="100" />
         </div>
       ); 

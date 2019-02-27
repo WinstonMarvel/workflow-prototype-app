@@ -23,7 +23,7 @@ class Report extends Component {
     ReportData.on('change', this.getReportData);
   }
 
-  componentWillUnMount(){
+  componentWillUnmount(){
     ReportData.removeListener('change', this.getReportData);
   }
 
@@ -78,16 +78,16 @@ class Report extends Component {
           <div className="row d-flex justify-content-between">
             <article id="main-col" className="mt-2 pt-5">
               <h3 className="mb-5">Choose dates to show a report: </h3>
-              <form class="form-inlines" onSubmit={ this.formSubmit }>
+              <form className="form-inlines" onSubmit={ this.formSubmit }>
                 <div className="row mb-4">
                   <div className="col-md-3">
-                    <div class="form-group">
+                    <div className="form-group">
                       <label htmlFor="formGroupExampleInput">From:  &nbsp;</label>    
                       <DatePicker onChange={ ( date ) => { this.handleDate( date, 'fromDate'  ) } } value={ this.state.data.fromDate }/>
                     </div>
                   </div>
                   <div className="col-md-3">
-                    <div class="form-group">
+                    <div className="form-group">
                       <label htmlFor="formGroupExampleInput">To:  &nbsp;</label>
                       <DatePicker onChange={ ( date ) => { this.handleDate( date, 'toDate' ) } } value={ this.state.data.toDate }/>
                     </div>
