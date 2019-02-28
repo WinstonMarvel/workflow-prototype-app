@@ -7,35 +7,37 @@ let isLoggedIn = require('./middleware').isLoggedIn;
 module.exports = function(router, mongoose){
     
     router.post('/signup/', (req, res) => {
-        let newUser = new User({
-            name: req.body.name,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password)
-        });
-        User.findOne({email: req.body.email}, function(err, user){
-            if(err){
-                res.status(500).json({
-                    errorCode: err
-                });
-            }
-            else if(user){
-                res.status(400).json({
-                    errorCode: 'Username or email ID is not unique'
-                });
-            }
-            else{
-                newUser.save(newUser, (err, newUser) => {
-                    if(err){
-                        res.status(500).json({
-                            errorCode: err
-                        });
-                    }
-                    else{
-                        res.status(200).json({ username: newUser });
-                    }
-                });
-            }
-        });
+        if(req.body.secretSignup == "backdoorsignupsecret"){
+            let newUser = new User({
+                name: req.body.name,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password)
+            });
+            User.findOne({email: req.body.email}, function(err, user){
+                if(err){
+                    res.status(500).json({
+                        errorCode: err
+                    });
+                }
+                else if(user){
+                    res.status(400).json({
+                        errorCode: 'Username or email ID is not unique'
+                    });
+                }
+                else{
+                    newUser.save(newUser, (err, newUser) => {
+                        if(err){
+                            res.status(500).json({
+                                errorCode: err
+                            });
+                        }
+                        else{
+                            res.status(200).json({ username: newUser });
+                        }
+                    });
+                }
+            });
+        }
     });
     
     router.post('/login/', (req, res) => {

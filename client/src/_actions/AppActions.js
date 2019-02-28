@@ -1,4 +1,5 @@
 import dispatcher from "../_dispatcher";
+import AppDataStore from '../_stores/AppDataStore';
 
 export function checkToken(){
     console.log("checking token");
@@ -104,6 +105,56 @@ export function resetApp(){
     });
     dispatcher.dispatch({
         type: "RESET_POST"
+    });
+}
+
+export function resetPassword(password){
+    dispatcher.dispatch({
+        type: "LOADING_START"
+    });
+    let options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + AppDataStore.getToken()
+        },
+        body: JSON.stringify({
+            "password" : password
+        })
+    };
+    fetch('/api/reset-password/', options)
+    .then( res => {
+        return res.json().then( data => ({ status: res.status, body: data }) )
+    })
+    .then( res => {
+        if(res.status == 200){
+            console.log(res);
+            dispatcher.dispatch({
+                type: "LOGOUT"
+            });
+        }
+        else{
+            dispatcher.dispatch({
+                type: "APP_ERROR",
+                payload: {
+                    error: `Error occured: ${res.status}`
+                }
+            });
+        }
+        dispatcher.dispatch({
+            type: "LOADING_COMPLETE"
+        });
+    }).catch((err) => {
+        console.log("error: ", err);
+        dispatcher.dispatch({
+            type: "APP_ERROR",
+            payload: {
+                error: err
+            }
+        });
+        dispatcher.dispatch({
+            type: "LOADING_COMPLETE"
+        });
     });
 }
 

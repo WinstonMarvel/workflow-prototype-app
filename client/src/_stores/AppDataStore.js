@@ -15,6 +15,14 @@ class Store extends EventEmitter{
             currentForm: null
         }
     }
+
+    logOut(){
+        this.resetAppState();
+        this.appState.isLoggedIn = false;
+        this.appState.userEmail = null;
+        this.appState.token = null;
+        this.appState.isAdmin = false;
+    }
     
     getAppState(){
         return this.appState;
@@ -63,10 +71,7 @@ class Store extends EventEmitter{
             }
 
             case "LOGOUT": {
-                this.appState.isLoggedIn = false;
-                this.appState.userEmail = null;
-                this.appState.token = null;
-                this.appState.isAdmin = false;
+                this.logOut();
                 console.log("logout: ", this.appState);
                 this.emit("change");
                 break;

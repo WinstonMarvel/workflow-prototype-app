@@ -11,12 +11,17 @@ class Login extends Component {
             password: null
         }
         this.handleChange = this.handleChange.bind(this);
+        this.doLogin = this.doLogin.bind(this);
     }
 
     handleChange(event){
         this.setState({
             [event.target.name]: event.target.value 
         });
+    }
+
+    doLogin(e){
+        e.preventDefault(); login(this.state.username, this.state.password) 
     }
 
     render() {
@@ -31,7 +36,7 @@ class Login extends Component {
                         <input type="password" className="form-control" placeholder="Password" name="password" id="password" value={ this.state.password } onChange={this.handleChange}/>
                     </div>
                     <div className="form-group">
-                        <button type="button" className="btn btn-primary px-5 mt-3" onClick={ (e)=>{ e.preventDefault(); login(this.state.username, this.state.password) } }> Login </button>
+                        <button type="submit" className="btn btn-primary px-5 mt-3" onClick={ (e) => this.doLogin(e) }> Login </button>
                     </div>
                 </form>
             </div>

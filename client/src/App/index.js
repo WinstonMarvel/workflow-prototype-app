@@ -4,7 +4,7 @@ import Login from '../Login';
 import Dashboard from '../Dashboard';
 import Header from '../Header';
 import Settings from '../Settings';
-import Signup from '../Login/Signup';
+import Reset from '../Login/Reset';
 import InitialDetails from '../_containers/InitialDetails';
 import EBP from '../_containers/EBP';
 import Export from '../_containers/Export';
@@ -75,7 +75,7 @@ class App extends Component {
               <Route exact path='/export' component={ Export } />
               <Route exact path='/report' component={ Report } />
               <Route path='/settings' component={ Settings } />
-              <Route path='/signup' component={ Signup } />
+              <Route path='/reset-password' component={ Reset } />
             </Switch>
         </BrowserRouter>
       )
