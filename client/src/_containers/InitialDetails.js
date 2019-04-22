@@ -56,6 +56,7 @@ class InitialDetails extends Component {
   }
 
   handleDate = date => {
+    date.setHours(12); // Fix for reporting error
     updatePostData( "postInfo", "postDate",  date );
   }
 
