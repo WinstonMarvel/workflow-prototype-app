@@ -1,6 +1,7 @@
 let config = require('../../config.json');
 let writeToExcel = require('./sheetWriter.js');
 let isLoggedIn =  require('../middleware').isLoggedIn;
+let path = require('path');
 
 let Post, sheetSchema;
 function decidePostType(req, res, next){
@@ -30,7 +31,7 @@ module.exports = function(router, mongoose){
                             "Content-Disposition": "attachment; filename=\"export.xlsx\""
                         }
                     };
-                    res.sendFile( 'C://projects//rubrik-app//server//temp//test-output.xlsx', options ); 
+                    res.sendFile( path.resolve('./temp/test-output.xlsx') , options ); 
                 })
             }
             else{
