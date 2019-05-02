@@ -17,7 +17,7 @@ function reCalculateEBP(post){
     post.compliance.total = post.compliance.words + post.compliance.isEthical + post.compliance.noMisleadingImpressions + post.compliance.noFactualInaccuracies;
     post.total = post.plagiarism.total + post.spellcheck.total + post.writingProficiency.total + post.topic.total + post.focus.total + post.performance.total + post.compliance.total + post.tone + post.source;
     post.score = Number.parseFloat(post.total/31 * 100).toFixed(2);
-    if(!post.plagiarism.copyscape || !post.topic.appropriateness || !post.compliance.noFactualInaccuracies){
+    if(  checkCompulsoryValues(post.plagiarism.copyscape, post.plagiarism.uniqueness, post.spellcheck.basic, post.spellcheck.vendorInfo, post.spellcheck.wordUsage, post.spellcheck.grammar, post.topic.appropriateness, post.compliance.noFactualInaccuracies )) {
         post.status = "Did Not Achieve";
     }
     else if(post.score > 90){
@@ -41,7 +41,8 @@ function reCalculateTBP(post){
     post.compliance.total = post.compliance.words + post.compliance.isEthical + post.compliance.noMisleadingImpressions + post.compliance.noFactualInaccuracies;
     post.total = post.plagiarism.total + post.spellcheck.total + post.writingProficiency.total + post.topic.total + post.focus.total + post.performance.total + post.compliance.total + post.source;
     post.score = Number.parseFloat(post.total/29 * 100).toFixed(2);
-    if(!post.plagiarism.copyscape || !post.topic.appropriateness || !post.compliance.noFactualInaccuracies){
+    let compulsoryValuesFail = checkCompulsoryValues(post.plagiarism.copyscape, post.plagiarism.uniqueness, post.spellcheck.basic, post.spellcheck.vendorInfo, post.spellcheck.wordUsage, post.spellcheck.grammar, post.topic.appropriateness, post.compliance.noFactualInaccuracies );
+    if( compulsoryValuesFail ){
         post.status = "Did Not Achieve";
     }
     else if(post.score > 90){
@@ -53,4 +54,12 @@ function reCalculateTBP(post){
     else if(post.score < 72){
         post.status = "Did Not Achieve";
     }
+}
+
+function checkCompulsoryValues(...prop){
+    for(let i = 0; i < prop.length; i++){
+        if(!prop[i])
+            return true;
+    }
+    return false;
 }
