@@ -21,6 +21,9 @@ class InitialDetails extends Component {
     PostDataStore.reCalculate();
     PostDataStore.on('change', this.getPostData);
     this.postType = AppDataStore.getCurrentFormType();
+    let date = localStorage.getItem('defaultDate');
+    if( date )
+      updatePostData( "postInfo", "postDate",  date );
   }
  
   componentWillUnmount(){
@@ -58,6 +61,7 @@ class InitialDetails extends Component {
   handleDate = date => {
     date.setHours(12); // Fix for reporting error
     updatePostData( "postInfo", "postDate",  date );
+    localStorage.setItem( 'defaultDate', date );
   }
 
   render() {
