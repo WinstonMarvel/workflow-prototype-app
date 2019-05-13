@@ -8,7 +8,7 @@ import MultiChoiceQuestion from '../_components/MultiChoiceQuestion';
 import StatusBar from '../_components/StatusBar';
 import PostDataStore from '../_stores/PostDataStore';
 import AppDataStore from '../_stores/AppDataStore';
-import { updatePost, submitPost, updatePostData } from '../_actions/PostActions';
+import { updatePost, submitPost, updatePostData, forceSubmitPostOverride } from '../_actions/PostActions';
 
 import '../_components/index.css';
 
@@ -19,7 +19,11 @@ class Content extends Component {
     this.getPostData = this.getPostData.bind(this);
     this.handleChangeSingle = this.handleChangeSingle.bind(this);
     this.handleChangeCategorized = this.handleChangeCategorized.bind(this);
+    this.handleOverrideChange = this.handleOverrideChange.bind(this);
     this.formFinalSubmit = this.formFinalSubmit.bind(this);
+    this.state = {
+      override: false
+    }
   }
 
   componentWillMount(){
@@ -42,8 +46,13 @@ class Content extends Component {
     this.setState({confirmSubmission: true});
   }
   
-  formFinalSubmit(){
-    submitPost(PostDataStore.getPostData(), AppDataStore.getCurrentFormType());
+  formFinalSubmit(override){
+    if(override){
+      forceSubmitPostOverride(PostDataStore.getPostData(), AppDataStore.getCurrentFormType());
+    }
+    else{
+      submitPost(PostDataStore.getPostData(), AppDataStore.getCurrentFormType());
+    }
   }
 
   handleChangeSingle(id, value){
@@ -52,6 +61,12 @@ class Content extends Component {
 
   handleChangeCategorized(cat, id, value){
       updatePostData( cat, id, value );
+  }
+
+  handleOverrideChange(){
+      this.setState({
+        override: !this.state.override
+      });
   }
 
   render() {
@@ -74,8 +89,14 @@ class Content extends Component {
                 <p><span>Total: </span> <strong>{ this.state.total }/31</strong></p>
                 <p><span>Score: </span> <strong>{ this.state.score } %</strong></p>
                 <p><span>Status: </span> <strong>{ this.state.status }</strong></p>
-                <button onClick={ this.formFinalSubmit } className="btn btn-primary mr-2">Yes</button>
+                <button onClick={ ()=>{ this.formFinalSubmit(this.state.override) } } className="btn btn-primary mr-2">Yes</button>
                 <button onClick={ () => { this.setState( { confirmSubmission: false } ) } } className="btn btn-danger">No</button>
+                <div class="form-check mt-3">
+                  <input class="form-check-input mt-2" type="checkbox" checked={this.state.override} onChange={this.handleOverrideChange} id="override" />
+                  <label class="form-check-label" for="override">
+                    Force overwrite of existing post if already present
+                  </label>
+                </div>
               </div>
             </div>
         </div>

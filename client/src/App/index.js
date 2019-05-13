@@ -34,15 +34,29 @@ class App extends Component {
 
   render() {
     if(this.state.error){
-      return (
-            <div className="mx-auto d-table" style={{marginTop: '40vh'}}>
-              <div className="alert alert-danger" role="alert">
-                <strong>Errors encountered:</strong> <br/>
-                { JSON.stringify(this.state.error) } <br/>
-                <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
+      let errObj = JSON.parse(this.state.error);
+      if(errObj.errors && errObj.errors["postInfo.requestId"].properties.type === "unique"){ // Force override for non unique posts
+        return (
+              <div className="mx-auto d-table" style={{marginTop: '40vh'}}>
+                <div className="alert alert-danger" role="alert">
+                  <strong>Errors encountered:</strong> <br/>
+                  This post has been previously entered and is not unique. If you need to override make sure to click the override check box before submitting<br/>
+                  <a href="javascript:void(0)" onClick={ resetApp } >Return to the application</a>
+                </div>
               </div>
-            </div>
-      );
+        );
+      }
+      else{
+        return (
+              <div className="mx-auto d-table" style={{marginTop: '40vh'}}>
+                <div className="alert alert-danger" role="alert">
+                  <strong>Errors encountered:</strong> <br/>
+                  { JSON.stringify(errObj.message) } <br/>
+                  <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
+                </div>
+              </div>
+        );
+      }
     }
     if(this.state.submissionSuccess){
       return (

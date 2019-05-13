@@ -69,19 +69,24 @@ module.exports = function(router, mongoose){
     });
 
     router.put('/post/:type/:id', isLoggedIn, decidePostType, (req, res) =>{
-        Post.findOneAndUpdate({requestId: req.params.id}, req.body, function(err, post){
+        Post.findOneAndUpdate({ "postInfo.requestId": req.params.id }, req.body, function(err, post){
             if(err){
                 console.log(err);
                 res.status(500).json({
                     errorCode: err
                 })
             }
-            else if(!post)
-            res.status(404).json({
-                errorCode: 'Did not find any such post'
-            });
-            else    
-                res.status(200).json(post);
+            else if(!post){
+                res.status(404).json({
+                    errorCode: 'Did not find any such post'
+                });
+            }
+            else{
+                res.status(200).json({
+                    status: 'success',
+                    id: req.params.id
+                });    
+            }   
         });
     });
     

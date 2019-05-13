@@ -75,6 +75,58 @@ export function submitPost(obj, postType){
 }
 
 
+export function forceSubmitPostOverride(obj, postType){
+    dispatcher.dispatch({
+        type: "LOADING_START"
+    });
+    let url = `/api/post/${postType.toLowerCase()}/${obj.postInfo.requestId}`;
+    let options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + AppDataStore.getToken()
+        },
+        body: JSON.stringify( obj )
+    };
+    fetch( url, options )
+    .then( res => res.json() )
+    .then( response =>{
+         console.log('Success:', JSON.stringify(response));
+         if(response.errorCode){
+            dispatcher.dispatch({
+                type: "APP_ERROR",
+                payload: {
+                    error: JSON.stringify(response.errorCode)
+                }
+            });
+         }
+         else{
+            dispatcher.dispatch({
+                type: "APP_SUCCESS",
+                payload: {
+                    success: true
+                }
+            });
+         }
+        dispatcher.dispatch({
+            type: "LOADING_COMPLETE"
+        });
+    } )
+    .catch( error => {
+        console.error('Error:', error);
+        dispatcher.dispatch({
+            type: "APP_ERROR",
+            payload: {
+                error: error
+            }
+        });
+        dispatcher.dispatch({
+            type: "LOADING_COMPLETE"
+        });
+    } );
+}
+
+
 export function exportPostData(postType, requestId){
     dispatcher.dispatch({
         type: "LOADING_START"
