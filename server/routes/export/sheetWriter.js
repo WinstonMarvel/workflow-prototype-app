@@ -15,6 +15,19 @@ let colors = {
     }
 };
 
+function writeToCell(cell, val){
+    if(cell.value && typeof(cell.value) === "object" && cell.value.formula ){
+        let formula = cell.value.formula;
+        cell.value = {
+            formula: formula,
+            result: val
+        }
+    }
+    else{
+        cell.value = val;
+    }
+}
+
 function writeToExcel( obj, sheetSchema, formType, worksheet ){
     obj.postInfo.blogType = formType.toUpperCase();
     if(formType == "ebp"){
@@ -27,23 +40,23 @@ function writeToExcel( obj, sheetSchema, formType, worksheet ){
         if(sheetSchema[prop] instanceof Array){
             sheetSchema[prop].map( (element) => {
                 let cell = worksheet.getCell(element);
-                cell.value = obj[prop];
+                writeToCell(cell, obj[prop]);
             });
         }
         else if(sheetSchema[prop] instanceof Object){
             for(nestedProp in sheetSchema[prop]){
                 let cell = worksheet.getCell(sheetSchema[prop][nestedProp]);
-                cell.value = obj[prop][nestedProp];
+                writeToCell(cell, obj[prop][nestedProp]);
             }
         }
         else{
             let cell = worksheet.getCell(sheetSchema[prop]); 
-            cell.value = obj[prop];
+            writeToCell(cell, obj[prop]);
         }
     }
     let statusCell = worksheet.getCell('B8');
     let colorScheme;
-    switch( statusCell.value.toLowerCase() ){
+    switch( statusCell.value.result.toLowerCase() ){
         case "achieved":
         colorScheme = "success";
         break;
