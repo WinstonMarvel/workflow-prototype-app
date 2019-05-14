@@ -34,7 +34,13 @@ class App extends Component {
 
   render() {
     if(this.state.error){
-      let errObj = JSON.parse(this.state.error);
+      let errObj = this.state.error;
+      try{
+        errObj = JSON.parse(this.state.error);
+      }
+      catch(e){
+        console.log(e);
+      }
       if(errObj.errors && errObj.errors["postInfo.requestId"].properties.type === "unique"){ // Force override for non unique posts
         return (
               <div className="mx-auto d-table" style={{marginTop: '40vh'}}>
@@ -52,6 +58,7 @@ class App extends Component {
                 <div className="alert alert-danger" role="alert">
                   <strong>Errors encountered:</strong> <br/>
                   { JSON.stringify(errObj.message) } <br/>
+                  { JSON.stringify(errObj) } <br/>
                   <a href="javascript:void(0)" onClick={ resetApp } >Click to return to app</a>
                 </div>
               </div>

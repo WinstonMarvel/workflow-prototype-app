@@ -16,7 +16,7 @@ function reCalculateEBP(post){
     post.performance.total = post.performance.linkText + post.performance.linkMatchesHeaders;
     post.compliance.total = post.compliance.words + post.compliance.isEthical + post.compliance.noMisleadingImpressions + post.compliance.noFactualInaccuracies;
     post.total = post.plagiarism.total + post.spellcheck.total + post.writingProficiency.total + post.topic.total + post.focus.total + post.performance.total + post.compliance.total + post.tone + post.source;
-    post.score = Number.parseFloat(post.total/31 * 100).toFixed(2);
+    post.score = Number.parseFloat(post.total* 100/31).toFixed(2);
     if(  checkCompulsoryValues(post.plagiarism.copyscape, post.plagiarism.uniqueness, post.spellcheck.basic, post.spellcheck.vendorInfo, post.spellcheck.wordUsage, post.spellcheck.grammar, post.topic.appropriateness, post.compliance.noFactualInaccuracies )) {
         post.status = "Did Not Achieve";
     }
@@ -40,7 +40,7 @@ function reCalculateTBP(post){
     post.performance.total = post.performance.linkText + post.performance.linkMatchesHeaders;
     post.compliance.total = post.compliance.words + post.compliance.isEthical + post.compliance.noMisleadingImpressions + post.compliance.noFactualInaccuracies;
     post.total = post.plagiarism.total + post.spellcheck.total + post.writingProficiency.total + post.topic.total + post.focus.total + post.performance.total + post.compliance.total + post.source;
-    post.score = Number.parseFloat(post.total/29 * 100).toFixed(2);
+    post.score = Number.parseFloat(post.total*100/29).toFixed(2);
     let compulsoryValuesFail = checkCompulsoryValues(post.plagiarism.copyscape, post.plagiarism.uniqueness, post.spellcheck.basic, post.spellcheck.vendorInfo, post.spellcheck.wordUsage, post.spellcheck.grammar, post.topic.appropriateness, post.compliance.noFactualInaccuracies );
     if( compulsoryValuesFail ){
         post.status = "Did Not Achieve";
