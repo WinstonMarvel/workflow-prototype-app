@@ -23,7 +23,7 @@ class InitialDetails extends Component {
     this.postType = AppDataStore.getCurrentFormType();
     let date = localStorage.getItem('defaultDate');
     if( date )
-      updatePostData( "postInfo", "postDate",  date );
+      updatePostData( "postInfo", "postDate",  new Date(date) );
   }
  
   componentWillUnmount(){

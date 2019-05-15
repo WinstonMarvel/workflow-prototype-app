@@ -94,7 +94,7 @@ class Content extends Component {
                 <div class="form-check mt-3">
                   <input class="form-check-input mt-2" type="checkbox" checked={this.state.override} onChange={this.handleOverrideChange} id="override" />
                   <label class="form-check-label" for="override">
-                    Force overwrite of existing post if already present
+                    Overwrite post instead of adding
                   </label>
                 </div>
               </div>
