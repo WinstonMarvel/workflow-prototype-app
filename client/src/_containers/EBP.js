@@ -21,16 +21,13 @@ class Content extends Component {
     this.handleChangeCategorized = this.handleChangeCategorized.bind(this);
     this.handleOverrideChange = this.handleOverrideChange.bind(this);
     this.formFinalSubmit = this.formFinalSubmit.bind(this);
-    this.state = {
-      override: false
-    }
   }
 
   componentWillMount(){
     PostDataStore.reCalculate();
     PostDataStore.on("change", this.getPostData);
     this.getPostData();
-    this.setState({confirmSubmission: false});
+    this.setState({confirmSubmission: false, override: false });
   }
 
   componentWillUnmount(){
