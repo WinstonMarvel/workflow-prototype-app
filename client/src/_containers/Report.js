@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from '../Header';
-import { getReport, updateReport } from '../_actions/ReportActions';
-import ReportData from '../_stores/ReportData';
+import Header from '_components/Header';
+import { getReport, updateReport } from '_actions/ReportActions';
+import ReportData from '_stores/ReportData';
 import DatePicker from 'react-date-picker'; 
 import { XYPlot, RadialChart, ArcSeries } from 'react-vis';
 

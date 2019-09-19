@@ -1,5 +1,5 @@
-import dispatcher from "../_dispatcher";
-import AppDataStore from '../_stores/AppDataStore';
+import dispatcher from "_dispatcher";
+import AppDataStore from '_stores/AppDataStore';
 
 export function checkToken(){
     console.log("checking token");

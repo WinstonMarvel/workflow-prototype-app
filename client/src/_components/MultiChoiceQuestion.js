@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { updatePostData_multi } from '../_actions/PostActions';
-import PostDataStore from '../_stores/PostDataStore';
+import { updatePostData_multi } from '_actions/PostActions';
+import PostDataStore from '_stores/PostDataStore';
 
 class MultiChoiceQuestion extends Component {
     constructor(props){

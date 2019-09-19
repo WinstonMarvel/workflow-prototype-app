@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { updatePostData_categorized } from '../_actions/PostActions';
-import PostDataStore from '../_stores/PostDataStore';
+import { updatePostData_categorized } from '_actions/PostActions';
+import PostDataStore from '_stores/PostDataStore';
 
 class CategorizedQuestion extends Component {
     constructor(props){

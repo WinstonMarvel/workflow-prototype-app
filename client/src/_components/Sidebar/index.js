@@ -1,7 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 import './index.css';
-import PostDataStore from '../_stores/PostDataStore';
+import PostDataStore from '_stores/PostDataStore';
 
 class Sidebar extends Component {
 

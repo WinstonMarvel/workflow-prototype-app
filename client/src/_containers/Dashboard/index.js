@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Login from '../Login';
-import './Dashboard.css';
-import Header from '../Header';
-import { newPost } from '../_actions/PostActions';
+import Login from '_containers/Login';
+import '_containers/Dashboard/Dashboard.css';
+import Header from '_components/Header';
+import { newPost } from '_actions/PostActions';
 
 class Dashboard extends Component {
   constructor(props){

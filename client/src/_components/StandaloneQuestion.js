@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { updatePostData_standalone } from '../_actions/PostActions';
-import PostDataStore from '../_stores/PostDataStore';
+import { updatePostData_standalone } from '_actions/PostActions';
+import PostDataStore from '_stores/PostDataStore';
 
 class StandaloneQuestion extends Component {
     constructor(props){

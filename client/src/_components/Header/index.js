@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
-import { logout } from '../_actions/AppActions';
+import { logout } from '_actions/AppActions';
 
 class Header extends Component {
   render() {

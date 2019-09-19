@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Login from '../Login';
-import Dashboard from '../Dashboard';
-import Header from '../Header';
-import Settings from '../Settings';
-import Reset from '../Login/Reset';
-import InitialDetails from '../_containers/InitialDetails';
-import EBP from '../_containers/EBP';
-import Export from '../_containers/Export';
-import Report from '../_containers/Report';
-import TBP from '../_containers/TBP';
+import Login from '_containers/Login';
+import Dashboard from '_containers/Dashboard';
+import Header from '_components/Header';
+import Settings from '_containers/Settings';
+import Reset from '_containers/Login/Reset';
+import InitialDetails from '_containers/InitialDetails';
+import EBP from '_containers/EBP';
+import Export from '_containers/Export';
+import Report from '_containers/Report';
+import TBP from '_containers/TBP';
 import './App.css'; 
-import appDataStore from '../_stores/AppDataStore';
-import { checkToken, resetApp } from '../_actions/AppActions';
+import appDataStore from '_stores/AppDataStore';
+import { checkToken, resetApp } from '_actions/AppActions';
 import Loader from 'react-loader-spinner';
 
 class App extends Component {

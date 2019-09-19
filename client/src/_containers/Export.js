@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from '../Header';
-import { exportPostData } from '../_actions/PostActions';
+import Header from '_components/Header';
+import { exportPostData } from '_actions/PostActions';
 
 class Export extends Component {
   constructor(props){

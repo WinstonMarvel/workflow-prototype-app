@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Header from '../Header';
-import Sidebar from '../Sidebar';
-import PostDataStore from '../_stores/PostDataStore';
-import AppDataStore from '../_stores/AppDataStore';
-import { updatePost, submitPost, updatePostData } from '../_actions/PostActions';
+import Header from '_components/Header';
+import Sidebar from '_components/Sidebar';
+import PostDataStore from '_stores/PostDataStore';
+import AppDataStore from '_stores/AppDataStore';
+import { updatePost, submitPost, updatePostData } from '_actions/PostActions';
 import DatePicker from 'react-date-picker';
 
 class InitialDetails extends Component {

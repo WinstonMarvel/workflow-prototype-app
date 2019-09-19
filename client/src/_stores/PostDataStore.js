@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import dispatcher from '../_dispatcher.js';
+import dispatcher from '_dispatcher.js';
 import reCalculate from './ReCalculate.js';
 
 class Store extends EventEmitter {

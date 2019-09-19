@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
-import icon from '../Assets/iconLogin.svg';
-import { login } from '../_actions/AppActions';
+import icon from 'Assets/iconLogin.svg';
+import { login } from '_actions/AppActions';
 
 class Login extends Component {
     constructor(props){

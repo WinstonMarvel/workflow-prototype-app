@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
-import './Login.css';
-import icon from '../Assets/iconLogin.svg';
-import { resetPassword } from '../_actions/AppActions';
+import icon from 'Assets/iconLogin.svg';
+import { resetPassword } from '_actions/AppActions';
 
 class Reset extends Component {
     constructor(props){
