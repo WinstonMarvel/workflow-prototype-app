@@ -43,8 +43,8 @@ class Reset extends Component {
     render() {
         return(
             <div className="container">
-                <form action="javascript:void(0)" className="login-signup-form align-center p-4 mx-auto">
-                    <img src={icon} className="mx-auto d-block mt-3 mb-5 avatar"/>
+                <form onSubmit={ e => { e.preventDefault() } } className="login-signup-form align-center p-4 mx-auto">
+                    <img src={icon} alt="Avatar" className="mx-auto d-block mt-3 mb-5 avatar"/>
                     {/* <div className="form-group">
                         <input type="name" className="form-control" placeholder="Name" name="Email" id="email"/>
                     </div>

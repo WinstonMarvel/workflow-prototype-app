@@ -1,5 +1,5 @@
 import dispatcher from '_dispatcher.js';
-import AppDataStore from '_stores/AppDataStore';
+import AppDataStore from '_store/AppDataStore';
 
 export function getReport( start, end, postType ){
     dispatcher.dispatch({

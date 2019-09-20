@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import Header from '_components/Header';
-import Sidebar from '_components/Sidebar';
-import PostDataStore from '_stores/PostDataStore';
-import AppDataStore from '_stores/AppDataStore';
-import { updatePost, submitPost, updatePostData } from '_actions/PostActions';
+import PostDataStore from '_store/PostDataStore';
+import AppDataStore from '_store/AppDataStore';
+import { updatePostData } from '_actions/PostActions';
 import DatePicker from 'react-date-picker';
 
 class InitialDetails extends Component {
   constructor(props){
     super(props);
     this.state = PostDataStore.getPostData();
-    this.formSubmit = this.formSubmit.bind(this);
-    this.getPostData = this.getPostData.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.validateData = this.validateData.bind(this);
-    this.handleDate = this.handleDate.bind(this);
   }
 
   componentWillMount(){
@@ -30,22 +24,22 @@ class InitialDetails extends Component {
       PostDataStore.removeListener('change', this.getPostData);
   }
 
-  getPostData(){
+  getPostData = () => {
     this.setState(PostDataStore.getPostData());
   }
 
-  formSubmit(event){ 
+  formSubmit = (event) => { 
     event.preventDefault();
     if(this.state.valid){
       this.props.history.push('/' + this.postType.toLowerCase())
     }
   }
 
-  handleChange(event){
+  handleChange = (event) => {
     updatePostData("postInfo", event.target.name,  event.target.value );
   }
 
-  validateData(){
+  validateData = () => {
       if(this.state.postInfo.vendorName && this.state.postInfo.clientName && this.state.postInfo.requestId && this.state.postInfo.postTitle && this.state.postInfo.postDate){
           this.setState({
             valid: true

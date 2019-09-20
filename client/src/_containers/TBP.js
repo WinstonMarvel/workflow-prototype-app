@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Header from '_components/Header';
 import Sidebar from '_components/Sidebar';
-import StandaloneQuestion from '_components/StandaloneQuestion';
 import CategorizedQuestion from '_components/CategorizedQuestion';
 import MultiChoiceQuestion from '_components/MultiChoiceQuestion';
 import StatusBar from '_components/StatusBar';
-import PostDataStore from '_stores/PostDataStore';
-import AppDataStore from '_stores/AppDataStore';
-import { updatePost, submitPost, updatePostData, forceSubmitPostOverride } from '_actions/PostActions';
+import PostDataStore from '_store/PostDataStore';
+import AppDataStore from '_store/AppDataStore';
+import { submitPost, updatePostData, forceSubmitPostOverride } from '_actions/PostActions';
 
 import '_components/index.css';
 

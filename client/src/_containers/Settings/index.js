@@ -6,7 +6,7 @@ class Settings extends Component{
         return(
             <div className="container">
                 <div className="bio login-form align-center p-4 mx-auto">
-                    <img src="http://localhost:8080/public/default.svg" className="avatar" />
+                    <img src="http://localhost:8080/public/default.svg" alt="User Avatar" className="avatar" />
                     <h5 className="name">Winston Jude</h5>
                     <p>
                         <span className="email">winston@test.com</span>

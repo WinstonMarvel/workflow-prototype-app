@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Header from '_components/Header';
 import { getReport, updateReport } from '_actions/ReportActions';
-import ReportData from '_stores/ReportData';
+import ReportData from '_store/ReportData';
 import DatePicker from 'react-date-picker'; 
-import { XYPlot, RadialChart, ArcSeries } from 'react-vis';
+import { RadialChart } from 'react-vis';
 
 
 class Report extends Component {

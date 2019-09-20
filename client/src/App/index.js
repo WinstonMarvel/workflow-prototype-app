@@ -11,7 +11,7 @@ import Export from '_containers/Export';
 import Report from '_containers/Report';
 import TBP from '_containers/TBP';
 import './App.css'; 
-import appDataStore from '_stores/AppDataStore';
+import appDataStore from '_store/AppDataStore';
 import { checkToken, resetApp } from '_actions/AppActions';
 import Loader from 'react-loader-spinner';
 

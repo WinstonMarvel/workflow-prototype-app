@@ -1,7 +1,7 @@
 import dispatcher from "_dispatcher";
 import axios from 'axios';
 import download from 'downloadjs';
-import AppDataStore from '_stores/AppDataStore';
+import AppDataStore from '_store/AppDataStore';
 
 export function newPost(formType){
     dispatcher.dispatch({
