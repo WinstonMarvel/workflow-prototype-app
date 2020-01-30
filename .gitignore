@@ -25,6 +25,7 @@ yarn-error.log*
 /server/node_modules
 /server/config.json
 /server/temp/*
+/server/public/images/logo.png
 .nyc_output
 node_modules
 package-lock.json

@@ -4,6 +4,12 @@
   margin: 0 auto;
 }
 
+@media screen and ( max-width: 1300px ) {
+  #main-col {
+    flex: 0 0 950px; 
+  }
+}
+
 #main-col ul li a {
   display: block;
   width: 100%;
